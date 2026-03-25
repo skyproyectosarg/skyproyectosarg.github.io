@@ -36,7 +36,7 @@
         <div class="security-notice">
             <i class="fas fa-shield-alt"></i>
             <span>
-                <strong>Búnker Oficial:</strong> Este es el único sitio autorizado para descargar mis apps. <b>Seguridad garantizada solo desde aquí.</b>
+                <strong>Búnker Oficial:</strong> Este es el único sitio autorizado para descargar mis apps. Así evitás publicidad engañosa e intermediarios. <b>Seguridad garantizada solo desde aquí.</b>
             </span>
         </div>
 
@@ -71,30 +71,45 @@
                     </div>
 
                     <div class="inner-tutorial">
-                        <h4>📖 Guía Técnica de Escalado:</h4>
+                        <h4 style="color: #00ff88; font-size: 1em; margin-bottom: 15px;">📖 Guía Técnica de Escalado:</h4>
                         
-                        <p class="helper-text">Herramienta recomendada para medir radios:</p>
-                        
-                        <a href="https://makerworld.com/en/models/2225287-caliper-radius-gauge-corner-radius-up-to-130-mm#profileId-2467730" target="_blank" class="link-card tool-link">
+                        <p style="font-size: 0.8em; color: #888; margin-bottom: 8px;">Herramienta recomendada para medir radios:</p>
+                        <a href="https://makerworld.com/en/models/2225287-caliper-radius-gauge-corner-radius-up-to-130-mm#profileId-2467730" target="_blank" class="link-card tool-link" style="margin: 0; background: #333; border: 1px solid #444; font-size: 0.8em;">
                             <i class="fas fa-external-link-alt"></i> <span>Accesorio Calibre (MakerWorld)</span>
                         </a>
-                        <span class="author-credit">Créditos al autor por su aporte a la comunidad.</span>
+                        <span class="author-credit" style="font-size: 0.75em; color: #666; display: block; font-style: italic; margin-top: 5px; margin-bottom: 15px;">
+                            Créditos y agradecimiento al autor de este diseño por su aporte a la comunidad.
+                        </span>
 
                         <div class="step-item">
                             <strong>1. Medición del Inserto</strong>
-                            Medí el contorno superior del aluminio con cinta de modista. Anotá los cm.
+                            Medí el contorno superior del aluminio con cinta de modista (bien tensa). Anotá los cm exactos.
                         </div>
 
                         <div class="step-item">
                             <strong>2. Medición del Diseño (STL)</strong>
-                            En el slicer, medí el diámetro interno del hueco del modelo.
+                            En Bambu Studio, Orca o Cura, medí el diámetro interno del hueco del modelo donde encastra el aluminio.
                         </div>
 
                         <div class="step-item">
                             <strong>3. Cálculo en la App</strong>
-                            Ingresá ambos valores en SkyScale 3D para obtener el %.
+                            Ingresá ambos valores en SkyScale 3D. La app te dará el <strong>% de escala</strong> necesario para X e Y.
+                        </div>
+
+                        <div class="step-item">
+                            <strong>4. Configuración del Slicer</strong>
+                            Desactivá el "Escalado Uniforme" (el candadito), aplicá el % en X e Y, y ajustá la altura Z manualmente.
+                        </div>
+
+                        <div class="step-item">
+                            <strong>5. Prueba FDM Safe</strong>
+                            Usá la herramienta de corte para imprimir solo una "rodaja" y verificar el calce antes del modelo final.
                         </div>
                     </div>
+
+                    <p style="text-align: center; font-size: 0.7em; color: #555; margin-top: 15px;">
+                        🎥 Video tutorial próximamente en YouTube y TikTok.
+                    </p>
                 </div>
             </details>
 
