@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cotizador de Piezas 3D - Sky 3D</title>
+    <title>Cotizador 3D Pro | Sky 3D</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { 
-            --accent: #9f6fff; --accent-hover: #8a5ae6; --bg: #09090b; 
-            --card: #18181b; --text: #f4f4f5; --text-dim: #a1a1aa;
-            --border: #27272a; --success: #10b981; --info: #3b82f6;
+        :root {
+            --accent: #8b5cf6; 
+            --accent-hover: #7c3aed;
+            --bg: #09090b; 
+            --card: #18181b; 
+            --text: #e4e4e7; 
+            --text-dim: #a1a1aa;
+            --border: #27272a;
+            --success: #10b981;
+            --info: #3b82f6;
         }
         * { box-sizing: border-box; transition: all 0.2s ease; }
         body { 
@@ -22,15 +28,27 @@
         .nav-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; width: 100%; }
         .nav-header a { color: var(--text-dim); text-decoration: none; font-size: 1.2em; }
         .nav-header h1 { font-size: 1.5em; margin: 0; color: var(--accent); }
+        
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
+
         .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
         .card { background: var(--card); border-radius: 12px; padding: 15px; border: 1px solid var(--border); position: relative; }
-        .card-title { font-size: 11px; text-transform: uppercase; color: var(--accent); margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
         
-        .info-trigger { color: var(--text-dim); cursor: pointer; display: flex; align-items: center; padding: 4px; }
-        .info-trigger:hover { color: var(--info); }
-        
+        .card-title { 
+            font-size: 11px; text-transform: uppercase; color: var(--accent); 
+            margin-bottom: 15px; display: flex; align-items: center; 
+            justify-content: space-between; font-weight: 700; 
+            border-bottom: 1px solid var(--border); padding-bottom: 8px; 
+        }
+
+        .info-trigger { 
+            color: var(--accent); 
+            cursor: pointer; display: flex; align-items: center; 
+            padding: 6px; border-radius: 50%; background: rgba(139, 92, 246, 0.1);
+        }
+        .info-trigger svg { width: 16px; height: 16px; display: block; }
+
         .tooltip { 
             position: absolute; top: 45px; left: 10px; right: 10px; 
             background: #27272a; color: #fff; padding: 15px; border-radius: 8px; 
@@ -39,7 +57,6 @@
             pointer-events: none;
         }
         .tooltip b { color: var(--accent); display: block; margin-bottom: 4px; font-size: 12px; }
-        .tooltip i { color: var(--success); font-style: normal; font-weight: bold; }
         
         .info-trigger:hover + .tooltip, .tooltip.active { display: block; }
         
@@ -52,12 +69,13 @@
         
         .results-panel { background: var(--card); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; display: grid; grid-template-columns: 1fr 320px; }
         .results-details { padding: 20px; border-right: 1px solid var(--border); }
-        .results-hero { background: linear-gradient(135deg, rgba(159, 111, 255, 0.05), rgba(124, 58, 237, 0.1)); padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .results-hero { background: rgba(139, 92, 246, 0.03); padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
         .stat-box { background: #09090b; padding: 10px; border-radius: 8px; border: 1px solid var(--border); }
         .stat-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; }
         .stat-value { font-size: 14px; font-weight: 700; }
-        .price-main { font-size: 48px; font-weight: 900; color: var(--accent); margin: 5px 0; letter-spacing: -2px; }
+        .price-main { font-size: 44px; font-weight: 900; color: var(--accent); margin: 5px 0; letter-spacing: -2px; }
+        
         .ml-box { background: rgba(255, 255, 0, 0.05); padding: 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 0, 0.1); margin-top: 10px; width: 100%; text-align: center; }
         .btn-calc { background: var(--accent); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase; }
         
@@ -77,17 +95,10 @@
         <div class="card">
             <div class="card-title">
                 <span>Insumos</span>
-                <div class="info-trigger"><i data-lucide="info" width="14"></i></div>
+                <div class="info-trigger"><i data-lucide="info"></i></div>
                 <div class="tooltip">
-                    <b>¿Qué es esto?</b>
-                    Aquí defines los costos básicos de materiales y energía.
-                    <br><br>
-                    <b>¿Qué ingresar?</b>
-                    - <i>Filamento:</i> El precio que pagaste por el rollo de 1KG.
-                    <br>
-                    - <i>kWh:</i> El costo de energía de tu factura (promedio $130 en Catamarca).
-                    <br>
-                    - <i>Tasa de fallos:</i> Margen para purgas o errores de impresión.
+                    <b>Costo de Materiales</b>
+                    Ingresá el precio del rollo (1KG). En Catamarca el kWh promedia los $130. El margen de fallo cubre purgas y soportes.
                 </div>
             </div>
             <div class="input-group">
@@ -104,17 +115,10 @@
         <div class="card">
             <div class="card-title">
                 <span>Maquinaria</span>
-                <div class="info-trigger"><i data-lucide="info" width="14"></i></div>
+                <div class="info-trigger"><i data-lucide="info"></i></div>
                 <div class="tooltip">
-                    <b>¿Para qué sirve?</b>
-                    Para asegurar que tu impresora se pague sola y tengas dinero para comprar una nueva en el futuro.
-                    <br><br>
-                    <b>¿Qué ingresar?</b>
-                    - <i>Valor Equipo:</i> Cuánto te costó la impresora.
-                    <br>
-                    - <i>Vida Útil:</i> Se recomiendan 6000hs para equipos hogareños.
-                    <br>
-                    - <i>Gastos Fijos:</i> Luz base, internet o software que uses al mes.
+                    <b>Amortización y Fijos</b>
+                    La amortización es el ahorro para tu próxima impresora. Los gastos fijos incluyen internet o alquiler divididos en horas de uso.
                 </div>
             </div>
             <div class="row">
@@ -128,17 +132,10 @@
         <div class="card">
             <div class="card-title">
                 <span>Mano de Obra</span>
-                <div class="info-trigger"><i data-lucide="info" width="14"></i></div>
+                <div class="info-trigger"><i data-lucide="info"></i></div>
                 <div class="tooltip">
-                    <b>Tu tiempo vale:</b>
-                    Aquí cobras por el trabajo manual que NO hace la máquina (diseño, lijado, pintura).
-                    <br><br>
-                    <b>¿Qué ingresar?</b>
-                    - <i>Hora Técnica:</i> Cuánto quieres ganar por 1 hora de tu tiempo.
-                    <br>
-                    - <i>Preparación:</i> Minutos que tardaste en limpiar la pieza o armar el archivo.
-                    <br>
-                    - <i>Mantenimiento:</i> Un pequeño extra por cada hora de uso para cambiar boquillas o correas.
+                    <b>Tu Trabajo Manual</b>
+                    Cobrá por el tiempo de diseño o post-procesado. El mantenimiento cubre boquillas y lubricación de la máquina.
                 </div>
             </div>
             <div class="input-group"><label>Valor Hora Técnica</label><input type="number" id="vHH" value="0" oninput="calcular()"></div>
@@ -149,13 +146,10 @@
         <div class="card">
             <div class="card-title">
                 <span>El Trabajo</span>
-                <div class="info-trigger"><i data-lucide="info" width="14"></i></div>
+                <div class="info-trigger"><i data-lucide="info"></i></div>
                 <div class="tooltip">
-                    <b>Datos del Slicer:</b>
-                    Carga aquí lo que te indica Bambu Studio, Orca o Cura antes de imprimir.
-                    <br><br>
-                    <b>Recomendación:</b>
-                    Usa un <i>Margen de 3.0x</i> para ventas minoristas. Esto cubre los costos y te deja una ganancia real para crecer.
+                    <b>Datos del Slicer</b>
+                    Ingresá el peso y tiempo de tu laminador. Un margen de 3.0x es el estándar para cubrir riesgos y generar ganancia real.
                 </div>
             </div>
             <div class="row">
@@ -248,21 +242,18 @@
         document.getElementById('outML').innerText = format(precioML);
     }
 
+    document.querySelectorAll('.info-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const tooltip = trigger.nextElementSibling;
+            document.querySelectorAll('.tooltip').forEach(t => { if (t !== tooltip) t.style.display = 'none'; });
+            const isVisible = tooltip.style.display === 'block';
+            tooltip.style.display = isVisible ? 'none' : 'block';
+        });
+    });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const triggers = document.querySelectorAll('.info-trigger');
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const tooltip = trigger.nextElementSibling;
-                document.querySelectorAll('.tooltip').forEach(t => { if (t !== tooltip) t.style.display = 'none'; });
-                const isVisible = tooltip.style.display === 'block';
-                tooltip.style.display = isVisible ? 'none' : 'block';
-            });
-        });
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.tooltip').forEach(t => { t.style.display = 'none'; });
-        });
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.tooltip').forEach(t => { t.style.display = 'none'; });
     });
 
     window.onload = calcular;
