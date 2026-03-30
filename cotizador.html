@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cotizador 3D Pro | Sky 3D</title>
+    <title>Cotizador 3D | Sky 3D</title>
     <style>
         :root {
             --accent: #8b5cf6; 
@@ -90,7 +90,7 @@
         <a href="apps.html">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
         </a>
-        <h1>Cotizador 3D Pro</h1>
+        <h1>Cotizador 3D </h1>
     </div>
 
     <div class="dashboard-grid">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="tooltip">
                     <b>Costo de Materiales</b>
-                    Ingresá el precio del rollo (1KG). En Catamarca el kWh promedia los $130. El margen de fallo cubre purgas y soportes.
+                    Ingresá el precio del rollo (1KG). Buscá el valor kWh en la factura de luz de tu zona. El margen de fallo cubre purgas y soportes.
                 </div>
             </div>
             <div class="input-group">
@@ -123,8 +123,14 @@
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
                 <div class="tooltip">
-                    <b>Amortización y Fijos</b>
-                    La amortización es el ahorro para tu próxima impresora. Los gastos fijos incluyen internet o alquiler divididos en horas de uso.
+                    <b>Amortización:</b>
+            Es el ahorro para renovar tu equipo. 
+            <br><br>
+            - <b>Vida (hs):</b> Se recomiendan <b>6.000 hs</b> para equipos Pro (Bambu) o 4.000 hs para equipos básicos.
+            <br>
+            - <b>Gastos Fijos:</b> Internet, impuestos y luz base mensual.
+            <br>
+            - <b>Horas Uso:</b> Cuántas horas calculás que la máquina trabajará al mes (promedio 300 hs).
                 </div>
             </div>
             <div class="row">
@@ -157,9 +163,15 @@
                 <div class="info-trigger">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
-                <div class="tooltip">
-                    <b>Datos del Slicer</b>
-                    Ingresá el peso y tiempo de tu laminador. Un margen de 3.0x es el estándar para cubrir riesgos y generar ganancia real.
+              <div class="tooltip">
+            <b>Guía de Ganancia:</b>
+            Ingresá peso y tiempo de tu laminador (Slicer).
+            <br><br>
+            - <i>Estándar (3.0x):</i> Piezas comunes o decorativas sin exigencia mecánica.
+            <br>
+            - <b>Técnico (4.0x):</b> Repuestos, piezas funcionales o materiales abrasivos (como PETG-CF). Cubre el desgaste de boquillas originales y control de tolerancias.
+            <br>
+            - <b>Premium (5.0x):</b> Urgencias (prioridad en cola) o piezas que requieren mucho lijado y post-procesado manual.
                 </div>
             </div>
             <div class="row">
@@ -170,9 +182,9 @@
             <div class="input-group">
                 <label>Margen de Ganancia</label>
                 <select id="multi" onchange="calcular()">
-                    <option value="1.5">Amigos (1.5x)</option>
+                    <option value="1.5">Preferencial (1.5x)</option>
                     <option value="2.0">Mayorista (2.0x)</option>
-                    <option value="3.0" selected>Minorista (3.0x)</option>
+                    <option value="3.0" selected>Minorista - Estándar (3.0x)</option>
                     <option value="4.0">Técnico (4.0x)</option>
                     <option value="5.0">Premium (5.0x)</option>
                 </select>
