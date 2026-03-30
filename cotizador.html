@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cotizador 3D Pro | Sky 3D</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --accent: #8b5cf6; 
@@ -26,7 +25,7 @@
         }
         .container { width: 100%; max-width: 1300px; }
         .nav-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; width: 100%; }
-        .nav-header a { color: var(--text-dim); text-decoration: none; font-size: 1.2em; }
+        .nav-header a { color: var(--text-dim); text-decoration: none; font-size: 1.2em; display: flex; align-items: center; }
         .nav-header h1 { font-size: 1.5em; margin: 0; color: var(--accent); }
         
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -44,10 +43,11 @@
 
         .info-trigger { 
             color: var(--accent); 
-            cursor: pointer; display: flex; align-items: center; 
-            padding: 6px; border-radius: 50%; background: rgba(139, 92, 246, 0.1);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            padding: 6px; border-radius: 50%; background: rgba(139, 92, 246, 0.15);
+            width: 26px; height: 26px; border: none;
         }
-        .info-trigger svg { width: 16px; height: 16px; display: block; }
+        .info-trigger svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.5; fill: none; }
 
         .tooltip { 
             position: absolute; top: 45px; left: 10px; right: 10px; 
@@ -87,7 +87,9 @@
 
 <div class="container">
     <div class="nav-header">
-        <a href="apps.html"><i data-lucide="arrow-left"></i></a>
+        <a href="apps.html">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        </a>
         <h1>Cotizador 3D Pro</h1>
     </div>
 
@@ -95,7 +97,9 @@
         <div class="card">
             <div class="card-title">
                 <span>Insumos</span>
-                <div class="info-trigger"><i data-lucide="info"></i></div>
+                <div class="info-trigger">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
                 <div class="tooltip">
                     <b>Costo de Materiales</b>
                     Ingresá el precio del rollo (1KG). En Catamarca el kWh promedia los $130. El margen de fallo cubre purgas y soportes.
@@ -115,7 +119,9 @@
         <div class="card">
             <div class="card-title">
                 <span>Maquinaria</span>
-                <div class="info-trigger"><i data-lucide="info"></i></div>
+                <div class="info-trigger">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
                 <div class="tooltip">
                     <b>Amortización y Fijos</b>
                     La amortización es el ahorro para tu próxima impresora. Los gastos fijos incluyen internet o alquiler divididos en horas de uso.
@@ -132,7 +138,9 @@
         <div class="card">
             <div class="card-title">
                 <span>Mano de Obra</span>
-                <div class="info-trigger"><i data-lucide="info"></i></div>
+                <div class="info-trigger">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
                 <div class="tooltip">
                     <b>Tu Trabajo Manual</b>
                     Cobrá por el tiempo de diseño o post-procesado. El mantenimiento cubre boquillas y lubricación de la máquina.
@@ -146,7 +154,9 @@
         <div class="card">
             <div class="card-title">
                 <span>El Trabajo</span>
-                <div class="info-trigger"><i data-lucide="info"></i></div>
+                <div class="info-trigger">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
                 <div class="tooltip">
                     <b>Datos del Slicer</b>
                     Ingresá el peso y tiempo de tu laminador. Un margen de 3.0x es el estándar para cubrir riesgos y generar ganancia real.
@@ -192,14 +202,12 @@
                 <span style="font-size: 9px; color: #fef08a; text-transform: uppercase;">Precio Recomendado ML</span>
                 <span id="outML" style="color: #fef08a; font-size: 20px; font-weight: 800; display: block;">$0.00</span>
             </div>
-            <button class="btn-calc" onclick="calcular()"><i data-lucide="refresh-cw" width="16"></i> Actualizar</button>
+            <button class="btn-calc" onclick="calcular()">Actualizar</button>
         </div>
     </div>
 </div>
 
 <script>
-    lucide.createIcons();
-
     function format(val) { return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(val); }
 
     function calcular() {
@@ -222,12 +230,10 @@
         const mlF = parseFloat(document.getElementById('mlFijo').value) || 0;
 
         const tTotal = hImp + (mImp / 60);
-
         const costoMat = ((pKg / 1000) * peso) * (1 + fail);
         const costoElec = (watts / 1000) * tTotal * ckwh;
         const amortMant = ((vMaq / vUtil) + cMant) * tTotal;
         const laborFijos = ((vHH / 60) * tMan) + ((gFijos / hMes) * tTotal);
-
         const costoTotal = costoMat + costoElec + amortMant + laborFijos;
         const precioFinal = costoTotal * multi;
         const precioML = (precioFinal + mlF) / (1 - mlP);
@@ -242,21 +248,24 @@
         document.getElementById('outML').innerText = format(precioML);
     }
 
-    document.querySelectorAll('.info-trigger').forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const tooltip = trigger.nextElementSibling;
-            document.querySelectorAll('.tooltip').forEach(t => { if (t !== tooltip) t.style.display = 'none'; });
-            const isVisible = tooltip.style.display === 'block';
-            tooltip.style.display = isVisible ? 'none' : 'block';
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = document.querySelectorAll('.info-trigger');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const tooltip = trigger.nextElementSibling;
+                document.querySelectorAll('.tooltip').forEach(t => { if (t !== tooltip) t.style.display = 'none'; });
+                const isVisible = tooltip.style.display === 'block';
+                tooltip.style.display = isVisible ? 'none' : 'block';
+            });
         });
-    });
 
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.tooltip').forEach(t => { t.style.display = 'none'; });
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.tooltip').forEach(t => { t.style.display = 'none'; });
+        });
+        
+        calcular();
     });
-
-    window.onload = calcular;
 </script>
 </body>
 </html>
