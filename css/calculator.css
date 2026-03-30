@@ -17,7 +17,6 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 input[type=number] { -moz-appearance: textfield; }
 
 .dashboard-grid {
@@ -53,16 +52,17 @@ input[type=number] { -moz-appearance: textfield; }
 
 .info-trigger {
     color: var(--text-dim);
-    cursor: help;
+    cursor: pointer;
     display: flex;
     align-items: center;
+    padding: 4px;
 }
 
 .info-trigger:hover { color: var(--info); }
 
 .tooltip {
     position: absolute;
-    top: 40px;
+    top: 45px;
     left: 10px;
     right: 10px;
     background: #27272a;
@@ -71,14 +71,17 @@ input[type=number] { -moz-appearance: textfield; }
     border-radius: 8px;
     font-size: 11px;
     line-height: 1.4;
-    z-index: 50;
+    z-index: 100;
     display: none;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border);
     pointer-events: none;
 }
 
-.info-trigger:hover + .tooltip { display: block; }
+.info-trigger:hover + .tooltip,
+.tooltip.active { 
+    display: block; 
+}
 
 .input-group { margin-bottom: 10px; }
 label { display: block; font-size: 10px; color: var(--text-dim); margin-bottom: 4px; font-weight: 500; }
