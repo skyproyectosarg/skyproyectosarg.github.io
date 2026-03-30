@@ -27,7 +27,4 @@ function calcular() {
     document.getElementById('outFinal').innerText = format(precioFinal);
 }
 
-window.onload = () => {
-    if(typeof lucide !== 'undefined') lucide.createIcons();
-    calcular();
-};
+window.onload = calcular;
