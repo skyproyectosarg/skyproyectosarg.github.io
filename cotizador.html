@@ -42,52 +42,6 @@
         .nav-header h1 { font-size: 1.8em; margin: 0; color: white; font-weight: 900; letter-spacing: -1px; }
         .nav-header span { color: var(--accent); }
 
-        .results-panel {
-            background: var(--card);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            margin-bottom: 30px;
-            order: 4; 
-        }
-
-        .results-details { padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-        .results-hero { 
-            background: rgba(139, 92, 246, 0.04); 
-            padding: 30px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-        }
-
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .stat-box { background: #09090b; padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
-        .stat-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
-        .stat-value { font-size: 15px; font-weight: 800; color: white; }
-        
-        .price-main { font-size: 52px; font-weight: 900; color: var(--accent); margin: 10px 0; letter-spacing: -2px; }
-
-        .ml-box {
-            background: rgba(254, 240, 138, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(254, 240, 138, 0.15);
-            margin-top: 15px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-calc {
-            background: var(--accent); color: white; border: none; padding: 16px;
-            border-radius: 12px; font-weight: 800; font-size: 14px;
-            cursor: pointer; width: 100%; text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-        }
-        .btn-calc:hover { background: var(--accent-hover); transform: translateY(-2px); }
-
         .tabs-nav {
             display: none;
             gap: 8px;
@@ -95,7 +49,7 @@
             overflow-x: auto;
             padding-bottom: 10px;
             scrollbar-width: none;
-            order: 3;
+            order: 2;
         }
         .tabs-nav::-webkit-scrollbar { display: none; }
         
@@ -123,7 +77,7 @@
             grid-template-columns: repeat(4, 1fr); 
             gap: 15px; 
             margin-bottom: 20px; 
-            order: 2;
+            order: 3;
         }
 
         .card {
@@ -182,6 +136,52 @@
         .row div { flex: 1; }
         .hint { font-size: 9px; color: #52525b; margin-top: 4px; display: block; }
 
+        .results-panel {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            margin-bottom: 30px;
+            order: 4;
+        }
+
+        .results-details { padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        .results-hero { 
+            background: rgba(139, 92, 246, 0.04); 
+            padding: 30px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .stat-box { background: #09090b; padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
+        .stat-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
+        .stat-value { font-size: 15px; font-weight: 800; color: white; }
+        
+        .price-main { font-size: 52px; font-weight: 900; color: var(--accent); margin: 10px 0; letter-spacing: -2px; }
+
+        .ml-box {
+            background: rgba(254, 240, 138, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(254, 240, 138, 0.15);
+            margin-top: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-calc {
+            background: var(--accent); color: white; border: none; padding: 16px;
+            border-radius: 12px; font-weight: 800; font-size: 14px;
+            cursor: pointer; width: 100%; text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+        .btn-calc:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
         .projects-section { width: 100%; background: var(--card); border-radius: 20px; border: 1px solid var(--border); padding: 25px; order: 5; }
         .projects-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .project-item { 
@@ -200,37 +200,45 @@
 
         @media (max-width: 768px) {
             .nav-header { order: 1; }
-            
-            .results-panel { 
-                order: 2; 
-                grid-template-columns: 1fr; 
-                border-radius: 16px;
-                display: flex;
-                flex-direction: column;
-            }
-            .results-details { 
-                order: 1; 
-                border-right: none; 
-                border-bottom: 1px solid var(--border); 
-            }
-            .results-hero { 
-                order: 2; 
-            }
-            
-            .tabs-nav { display: flex; order: 3; }
-            
+            .tabs-nav { display: flex; order: 2; } 
             .dashboard-grid { 
-                order: 4;
+                order: 3; 
                 grid-template-columns: 1fr; 
                 gap: 0; 
             }
             .card { display: none; border-radius: 0 0 16px 16px; border-top: none; }
             .card.active { display: flex; animation: slideIn 0.3s ease; }
+
+            .results-panel { 
+                order: 4; 
+                grid-template-columns: 1fr; 
+                border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .results-hero { 
+                order: 1; 
+            }
+            
+            .results-details { 
+                order: 2; 
+                border-right: none; 
+                border-top: 1px solid var(--border);
+                border-bottom: none;
+            }
             
             .projects-section { order: 5; }
-
             .stat-grid { grid-template-columns: repeat(2, 1fr); }
             .price-main { font-size: 42px; }
+        }
+
+        @media (min-width: 769px) {
+            .dashboard-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (max-width: 1100px) and (min-width: 769px) {
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @keyframes slideIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; transform: translateX(0); } }
@@ -244,14 +252,43 @@
     </header>
 
     <nav class="tabs-nav">
-        <button class="tab-btn active" onclick="switchTab(0)">Insumos</button>
-        <button class="tab-btn" onclick="switchTab(1)">Maquinaria</button>
-        <button class="tab-btn" onclick="switchTab(2)">Mano de Obra</button>
-        <button class="tab-btn" onclick="switchTab(3)">El Trabajo</button>
+        <button class="tab-btn active" onclick="switchTab(0)">El Trabajo</button>
+        <button class="tab-btn" onclick="switchTab(1)">Insumos</button>
+        <button class="tab-btn" onclick="switchTab(2)">Maquinaria</button>
+        <button class="tab-btn" onclick="switchTab(3)">Mano de Obra</button>
     </nav>
 
     <div class="dashboard-grid">
         <div class="card active" id="card0">
+            <div class="card-title">
+                <span>El Trabajo</span>
+                <div class="info-trigger">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+                <div class="tooltip">
+                    <b>Datos Slicer</b>
+                    Ingresá peso y tiempo final. 
+                    <br><br><b>Márgenes:</b> Estándar (3x), Técnico (4x), Premium (5x).
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group"><label>Horas Imp.</label><input type="number" id="hImp" value="0" oninput="calcular()"></div>
+                <div class="input-group"><label>Minutos</label><input type="number" id="mImp" value="0" oninput="calcular()"></div>
+            </div>
+            <div class="input-group"><label>Peso (Gramos)</label><input type="number" id="peso" value="0" oninput="calcular()"></div>
+            <div class="input-group">
+                <label>Margen de Ganancia</label>
+                <select id="multi" onchange="calcular()">
+                    <option value="1.5">Preferencial (1.5x)</option>
+                    <option value="2.0">Mayorista (2.0x)</option>
+                    <option value="3.0" selected>Estándar (3.0x)</option>
+                    <option value="4.0">Técnico (4.0x)</option>
+                    <option value="5.0">Premium (5.0x)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" id="card1">
             <div class="card-title">
                 <span>Insumos</span>
                 <div class="info-trigger">
@@ -260,7 +297,7 @@
                 <div class="tooltip">
                     <b>Costo de Materiales</b>
                     Ingresá el precio del filamento por 1KG. Buscá el valor kWh en tu factura.
-                    <br><br><b>Gastos Extras:</b> Agregá el costo fijo por unidad como aros de llaveros, imanes, tornillos o bolsas de empaque.
+                    <br><br><b>Gastos Extras:</b> Agregá el costo fijo por unidad como aros de llaveros, imanes o bolsas.
                 </div>
             </div>
             <div class="input-group">
@@ -280,7 +317,7 @@
             </div>
         </div>
 
-        <div class="card" id="card1">
+        <div class="card" id="card2">
             <div class="card-title">
                 <span>Maquinaria</span>
                 <div class="info-trigger">
@@ -288,8 +325,8 @@
                 </div>
                 <div class="tooltip">
                     <b>Amortización y Fijos</b>
-                    <b>Vida Útil:</b> Ahorro para renovar equipo (Ej: 6000hs).
-                    <br><b>Gastos Fijos:</b> Internet, alquiler y servicios base del mes repartidos en las horas de uso.
+                    <b>Vida Útil:</b> Ahorro para renovar equipo.
+                    <br><b>Gastos Fijos:</b> Internet, alquiler y servicios prorrateados.
                 </div>
             </div>
             <div class="row">
@@ -300,82 +337,49 @@
             <div class="input-group"><label>Horas Uso Mes</label><input type="number" id="hMes" value="300" oninput="calcular()"></div>
         </div>
 
-        <div class="card" id="card2">
+        <div class="card" id="card3">
             <div class="card-title">
                 <span>Mano de Obra</span>
                 <div class="info-trigger">
                     <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
                 <div class="tooltip">
-                    <b>Tu Tiempo y Mantenimiento</b>
-                    <b>Hora Técnica:</b> Lo que cobrás por tu conocimiento.
-                    <br><b>Preparación:</b> Minutos de laminado y post-procesado manual.
-                    <br><b>Mantenimiento:</b> Fondo para boquillas y lubricantes.
+                    <b>Tu Tiempo</b>
+                    <b>Hora Técnica:</b> Tu conocimiento.
+                    <br><b>Preparación:</b> Minutos de laminado y post-procesado.
                 </div>
             </div>
             <div class="input-group"><label>Valor Hora Técnica</label><input type="number" id="vHH" value="0" oninput="calcular()"></div>
             <div class="input-group"><label>Preparación (Min)</label><input type="number" id="tMan" value="0" oninput="calcular()"></div>
             <div class="input-group"><label>Mantenimiento ($/h)</label><input type="number" id="cMant" value="60" oninput="calcular()"></div>
         </div>
-
-        <div class="card" id="card3">
-            <div class="card-title">
-                <span>El Trabajo</span>
-                <div class="info-trigger">
-                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </div>
-                <div class="tooltip">
-                    <b>Datos del Laminador (Slicer)</b>
-                    Ingresá el peso y tiempo final. 
-                    <br><br><b>Márgenes:</b>
-                    <br>- <b>Estándar (3x):</b> Decorativo.
-                    <br>- <b>Técnico (4x):</b> Repuestos funcionales.
-                    <br>- <b>Premium (5x):</b> Urgencias.
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-group"><label>Horas Imp.</label><input type="number" id="hImp" value="0" oninput="calcular()"></div>
-                <div class="input-group"><label>Minutos</label><input type="number" id="mImp" value="0" oninput="calcular()"></div>
-            </div>
-            <div class="input-group"><label>Peso (Gramos)</label><input type="number" id="peso" value="0" oninput="calcular()"></div>
-            <div class="input-group">
-                <label>Margen de Ganancia</label>
-                <select id="multi" onchange="calcular()">
-                    <option value="1.5">Preferencial (1.5x)</option>
-                    <option value="2.0">Mayorista (2.0x)</option>
-                    <option value="3.0" selected>Estándar (3.0x)</option>
-                    <option value="4.0">Técnico (4.0x)</option>
-                    <option value="5.0">Premium (5.0x)</option>
-                </select>
-            </div>
-        </div>
     </div>
 
     <div class="results-panel">
-        <div class="results-details">
-            <div class="stat-grid">
-                <div class="stat-box"><span class="stat-label">Insumos+Ext</span><span class="stat-value" id="outMat">$0</span></div>
-                <div class="stat-box"><span class="stat-label">Energía</span><span class="stat-value" id="outElec">$0</span></div>
-                <div class="stat-box"><span class="stat-label">Amortización</span><span class="stat-value" id="outAmort">$0</span></div>
-                <div class="stat-box"><span class="stat-label">Labor/Fijos</span><span class="stat-value" id="outLabor">$0</span></div>
-                <div class="stat-box" style="border-color: var(--accent);"><span class="stat-label" style="color: var(--accent);">Costo Real</span><span class="stat-value" id="outCostoTotal" style="color: var(--accent);">$0</span></div>
-                <div class="stat-box" style="border-color: var(--success);"><span class="stat-label" style="color: var(--success);">Ganancia</span><span class="stat-value" id="outProfit" style="color: var(--success);">$0</span></div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="input-group"><label>ML Comisión %</label><input type="number" id="mlPerc" value="15" oninput="calcular()"></div>
-                <div class="input-group"><label>ML Cargo Fijo $</label><input type="number" id="mlFijo" value="850" oninput="calcular()"></div>
-            </div>
-        </div>
         <div class="results-hero">
             <span style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; font-weight: 800;">Precio Sugerido</span>
-            <span class="price-main" id="outFinal">$0.00</span>
+            <span class="price-main" id="outFinal">$ 0,00</span>
             <div class="ml-box">
                 <span style="font-size: 9px; color: var(--warning); text-transform: uppercase; font-weight: 900;">Recomendado Mercado Libre</span>
-                <span id="outML" style="color: var(--warning); font-size: 24px; font-weight: 900; display: block;">$0.00</span>
+                <span id="outML" style="color: var(--warning); font-size: 24px; font-weight: 900; display: block;">$ 0,00</span>
             </div>
             <div style="margin-top: 20px; width: 100%;">
                 <input type="text" id="projectName" placeholder="Nombre del proyecto..." style="margin-bottom: 10px; border-color: var(--accent);">
                 <button class="btn-calc" onclick="saveProject()">Guardar Cotización</button>
+            </div>
+        </div>
+        <div class="results-details">
+            <div class="stat-grid">
+                <div class="stat-box"><span class="stat-label">Insumos+Ext</span><span class="stat-value" id="outMat">$ 0,00</span></div>
+                <div class="stat-box"><span class="stat-label">Energía</span><span class="stat-value" id="outElec">$ 0,00</span></div>
+                <div class="stat-box"><span class="stat-label">Amortización</span><span class="stat-value" id="outAmort">$ 0,00</span></div>
+                <div class="stat-box"><span class="stat-label">Labor/Fijos</span><span class="stat-value" id="outLabor">$ 0,00</span></div>
+                <div class="stat-box" style="border-color: var(--accent);"><span class="stat-label" style="color: var(--accent);">Costo Real</span><span class="stat-value" id="outCostoTotal" style="color: var(--accent);">$ 0,00</span></div>
+                <div class="stat-box" style="border-color: var(--success);"><span class="stat-label" style="color: var(--success);">Ganancia</span><span class="stat-value" id="outProfit" style="color: var(--success);">$ 0,00</span></div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="input-group"><label>ML Comisión %</label><input type="number" id="mlPerc" value="15" oninput="calcular()"></div>
+                <div class="input-group"><label>ML Cargo Fijo $</label><input type="number" id="mlFijo" value="850" oninput="calcular()"></div>
             </div>
         </div>
     </div>
@@ -383,7 +387,7 @@
     <div class="projects-section">
         <div class="projects-header">
             <h3 style="margin: 0; font-size: 18px;">Mis Cotizaciones Guardadas</h3>
-            <button class="btn-icon" onclick="exportAll()" title="Exportar Todo">Exportar CSV 📥</button>
+            <button class="btn-icon" onclick="exportAll()">Exportar CSV 📥</button>
         </div>
         <div class="projects-list" id="projectsList"></div>
     </div>
@@ -431,7 +435,7 @@
 
     function saveProject() {
         const name = document.getElementById('projectName').value.trim();
-        if (!name) { alert("Ponle un nombre a tu proyecto."); return; }
+        if (!name) return;
         const d = calcular();
         const project = {
             id: Date.now(), name, date: new Date().toLocaleDateString(),
@@ -443,7 +447,7 @@
         });
         const idx = projects.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
         if (idx !== -1) {
-            if(confirm("Ya existe un proyecto con este nombre. ¿Deseas actualizarlo?")) projects[idx] = project; else return;
+            if(confirm("¿Deseas actualizar el proyecto existente?")) projects[idx] = project; else return;
         } else { projects.push(project); }
         localStorage.setItem('sky_db_vfinal', JSON.stringify(projects));
         document.getElementById('projectName').value = "";
@@ -464,7 +468,7 @@
     }
 
     function deleteProject(id) {
-        if(!confirm("¿Borrar definitivamente esta cotización?")) return;
+        if(!confirm("¿Eliminar cotización?")) return;
         projects = projects.filter(p => p.id !== id);
         localStorage.setItem('sky_db_vfinal', JSON.stringify(projects));
         render();
@@ -473,7 +477,7 @@
     function render() {
         const list = document.getElementById('projectsList');
         if (projects.length === 0) {
-            list.innerHTML = '<p style="color:gray; text-align:center; padding:20px;">No hay proyectos guardados.</p>';
+            list.innerHTML = '<p style="color:gray; text-align:center; padding:20px;">No hay proyectos.</p>';
             return;
         }
         list.innerHTML = projects.map(p => `
@@ -483,7 +487,7 @@
                     <p>${p.date} • ${p.weight}g • ${p.time}h • <b>${format(p.price)}</b></p>
                 </div>
                 <div class="project-actions">
-                    <button class="btn-icon" onclick="loadProject(${p.id})">✏️ Editar</button>
+                    <button class="btn-icon" onclick="loadProject(${p.id})">✏️</button>
                     <button class="btn-icon btn-delete" onclick="deleteProject(${p.id})">🗑️</button>
                 </div>
             </div>
@@ -497,7 +501,7 @@
         const blob = new Blob([csv], { type: 'text/csv' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'sky3d_export_historial.csv';
+        a.download = 'sky3d_export.csv';
         a.click();
     }
 
@@ -516,6 +520,5 @@
         calcular();
     });
 </script>
-
 </body>
 </html>
