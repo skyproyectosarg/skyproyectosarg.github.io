@@ -19,29 +19,23 @@
             --danger: #ef4444;
             --warning: #fef08a;
         }
-
         * { box-sizing: border-box; transition: all 0.2s ease; }
-
         body { 
             background-color: var(--bg); color: var(--text); 
             font-family: 'Inter', sans-serif; 
             margin: 0; padding: 15px; display: flex; flex-direction: column; 
             align-items: center; min-height: 100vh;
         }
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
         input[type=number] { -moz-appearance: textfield; }
-
         .container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; }
-
         .nav-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px; order: 1; }
         .nav-header h1 { font-size: 1.8em; margin: 0; color: white; font-weight: 900; letter-spacing: -1px; }
         .nav-header span { color: var(--accent); }
-
         .tabs-nav {
             display: none;
             gap: 8px;
@@ -52,7 +46,6 @@
             order: 2;
         }
         .tabs-nav::-webkit-scrollbar { display: none; }
-        
         .tab-btn {
             background: var(--card);
             border: 1px solid var(--border);
@@ -71,7 +64,6 @@
             border-color: var(--accent);
             box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
-
         .dashboard-grid { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
@@ -79,7 +71,6 @@
             margin-bottom: 20px; 
             order: 3;
         }
-
         .card {
             background: var(--card);
             border-radius: 16px;
@@ -89,7 +80,6 @@
             flex-direction: column;
             position: relative;
         }
-
         .card-title {
             font-size: 11px;
             text-transform: uppercase;
@@ -103,7 +93,6 @@
             border-bottom: 1px solid var(--border);
             padding-bottom: 10px;
         }
-
         .info-trigger {
             color: var(--accent);
             cursor: pointer;
@@ -114,7 +103,6 @@
             background: rgba(139, 92, 246, 0.1);
         }
         .info-trigger svg { width: 16px; height: 16px; display: block; fill: none; stroke: currentColor; stroke-width: 2.5; }
-
         .tooltip {
             position: absolute; top: 50px; left: 10px; right: 10px;
             background: #27272a; color: #fff; padding: 15px; border-radius: 8px;
@@ -124,7 +112,6 @@
         }
         .tooltip b { color: var(--accent); display: block; margin-bottom: 4px; }
         .info-trigger:hover + .tooltip, .tooltip.active { display: block; }
-
         .input-group { margin-bottom: 12px; }
         label { display: block; font-size: 10px; color: var(--text-dim); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
         input, select {
@@ -135,7 +122,6 @@
         .row { display: flex; gap: 10px; }
         .row div { flex: 1; }
         .hint { font-size: 9px; color: #52525b; margin-top: 4px; display: block; }
-
         .results-panel {
             background: var(--card);
             border-radius: 20px;
@@ -146,7 +132,6 @@
             margin-bottom: 30px;
             order: 4;
         }
-
         .results-details { padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
         .results-hero { 
             background: rgba(139, 92, 246, 0.04); 
@@ -156,14 +141,11 @@
             justify-content: center; 
             align-items: center; 
         }
-
         .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .stat-box { background: #09090b; padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
         .stat-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 4px; }
         .stat-value { font-size: 15px; font-weight: 800; color: white; }
-        
         .price-main { font-size: 52px; font-weight: 900; color: var(--accent); margin: 10px 0; letter-spacing: -2px; }
-
         .ml-box {
             background: rgba(254, 240, 138, 0.05);
             padding: 15px;
@@ -173,7 +155,6 @@
             width: 100%;
             text-align: center;
         }
-
         .btn-calc {
             background: var(--accent); color: white; border: none; padding: 16px;
             border-radius: 12px; font-weight: 800; font-size: 14px;
@@ -181,7 +162,6 @@
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         }
         .btn-calc:hover { background: var(--accent-hover); transform: translateY(-2px); }
-
         .projects-section { width: 100%; background: var(--card); border-radius: 20px; border: 1px solid var(--border); padding: 25px; order: 5; }
         .projects-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .project-item { 
@@ -197,67 +177,35 @@
         }
         .btn-icon:hover { color: white; border-color: var(--accent); }
         .btn-delete:hover { border-color: var(--danger); color: var(--danger); }
-
         @media (max-width: 768px) {
             .nav-header { order: 1; }
             .tabs-nav { display: flex; order: 2; } 
-            .dashboard-grid { 
-                order: 3; 
-                grid-template-columns: 1fr; 
-                gap: 0; 
-            }
+            .dashboard-grid { order: 3; grid-template-columns: 1fr; gap: 0; }
             .card { display: none; border-radius: 0 0 16px 16px; border-top: none; }
             .card.active { display: flex; animation: slideIn 0.3s ease; }
-
-            .results-panel { 
-                order: 4; 
-                grid-template-columns: 1fr; 
-                border-radius: 16px;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .results-hero { 
-                order: 1; 
-            }
-            
-            .results-details { 
-                order: 2; 
-                border-right: none; 
-                border-top: 1px solid var(--border);
-                border-bottom: none;
-            }
-            
+            .results-panel { order: 4; grid-template-columns: 1fr; border-radius: 16px; display: flex; flex-direction: column; }
+            .results-hero { order: 1; border-bottom: 1px solid var(--border); }
+            .results-details { order: 2; border-right: none; border-top: none; border-bottom: none; }
             .projects-section { order: 5; }
             .stat-grid { grid-template-columns: repeat(2, 1fr); }
             .price-main { font-size: 42px; }
         }
-
-        @media (min-width: 769px) {
-            .dashboard-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        @media (max-width: 1100px) and (min-width: 769px) {
-            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
+        @media (min-width: 769px) { .dashboard-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 1100px) and (min-width: 769px) { .dashboard-grid { grid-template-columns: repeat(2, 1fr); } }
         @keyframes slideIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; transform: translateX(0); } }
     </style>
 </head>
 <body>
-
 <div class="container">
     <header class="nav-header">
         <h1>SKY <span>COTIZADOR 3D</span></h1>
     </header>
-
     <nav class="tabs-nav">
         <button class="tab-btn active" onclick="switchTab(0)">El Trabajo</button>
         <button class="tab-btn" onclick="switchTab(1)">Insumos</button>
         <button class="tab-btn" onclick="switchTab(2)">Maquinaria</button>
         <button class="tab-btn" onclick="switchTab(3)">Mano de Obra</button>
     </nav>
-
     <div class="dashboard-grid">
         <div class="card active" id="card0">
             <div class="card-title">
@@ -267,7 +215,7 @@
                 </div>
                 <div class="tooltip">
                     <b>Datos Slicer</b>
-                    Ingresá peso y tiempo final. 
+                    Ingresá peso y tiempo final del laminador. 
                     <br><br><b>Márgenes:</b> Estándar (3x), Técnico (4x), Premium (5x).
                 </div>
             </div>
@@ -287,7 +235,6 @@
                 </select>
             </div>
         </div>
-
         <div class="card" id="card1">
             <div class="card-title">
                 <span>Insumos</span>
@@ -296,8 +243,8 @@
                 </div>
                 <div class="tooltip">
                     <b>Costo de Materiales</b>
-                    Ingresá el precio del filamento por 1KG. Buscá el valor kWh en tu factura.
-                    <br><br><b>Gastos Extras:</b> Agregá el costo fijo por unidad como aros de llaveros, imanes o bolsas.
+                    Ingresá el precio del filamento por 1KG y kWh de tu factura.
+                    <br><br><b>Gastos Extras:</b> Costo fijo unitario por aros, imanes o empaque.
                 </div>
             </div>
             <div class="input-group">
@@ -316,7 +263,6 @@
                 </div>
             </div>
         </div>
-
         <div class="card" id="card2">
             <div class="card-title">
                 <span>Maquinaria</span>
@@ -325,8 +271,7 @@
                 </div>
                 <div class="tooltip">
                     <b>Amortización y Fijos</b>
-                    <b>Vida Útil:</b> Ahorro para renovar equipo.
-                    <br><b>Gastos Fijos:</b> Internet, alquiler y servicios prorrateados.
+                    Vida Útil: Horas estimadas. Gastos Fijos: Costos base mensuales.
                 </div>
             </div>
             <div class="row">
@@ -336,7 +281,6 @@
             <div class="input-group"><label>Gastos Fijos Mes</label><input type="number" id="gFijos" value="15000" oninput="calcular()"></div>
             <div class="input-group"><label>Horas Uso Mes</label><input type="number" id="hMes" value="300" oninput="calcular()"></div>
         </div>
-
         <div class="card" id="card3">
             <div class="card-title">
                 <span>Mano de Obra</span>
@@ -345,8 +289,7 @@
                 </div>
                 <div class="tooltip">
                     <b>Tu Tiempo</b>
-                    <b>Hora Técnica:</b> Tu conocimiento.
-                    <br><b>Preparación:</b> Minutos de laminado y post-procesado.
+                    Hora Técnica: Tu valor conocimiento. Preparación: Minutos de post-procesado.
                 </div>
             </div>
             <div class="input-group"><label>Valor Hora Técnica</label><input type="number" id="vHH" value="0" oninput="calcular()"></div>
@@ -354,7 +297,6 @@
             <div class="input-group"><label>Mantenimiento ($/h)</label><input type="number" id="cMant" value="60" oninput="calcular()"></div>
         </div>
     </div>
-
     <div class="results-panel">
         <div class="results-hero">
             <span style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; font-weight: 800;">Precio Sugerido</span>
@@ -383,7 +325,6 @@
             </div>
         </div>
     </div>
-
     <div class="projects-section">
         <div class="projects-header">
             <h3 style="margin: 0; font-size: 18px;">Mis Cotizaciones Guardadas</h3>
@@ -392,15 +333,17 @@
         <div class="projects-list" id="projectsList"></div>
     </div>
 </div>
-
 <script>
     const format = (v) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(v);
-
+    function escapeHTML(str) {
+        const p = document.createElement('p');
+        p.textContent = str;
+        return p.innerHTML;
+    }
     function switchTab(index) {
         document.querySelectorAll('.card').forEach((c, i) => c.classList.toggle('active', i === index));
         document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === index));
     }
-
     function calcular() {
         const val = (id) => parseFloat(document.getElementById(id).value) || 0;
         const pKg = val('precioKg'), ckwh = val('ckwh'), watts = val('watts'), fail = val('failRate')/100, extras = val('extras');
@@ -408,17 +351,14 @@
         const vHH = val('vHH'), tMan = val('tMan'), cMant = val('cMant');
         const hImp = val('hImp'), mImp = val('mImp'), peso = val('peso'), multi = val('multi');
         const mlP = val('mlPerc')/100, mlF = val('mlFijo');
-
         const tTotal = hImp + (mImp / 60);
         const costoMat = ((pKg / 1000) * peso * (1 + fail)) + extras;
         const costoElec = (watts / 1000) * tTotal * ckwh;
         const amortMant = ((vMaq / vUtil) + cMant) * tTotal;
         const laborFijos = ((vHH / 60) * tMan) + ((gFijos / hMes) * tTotal);
-        
         const costoTotal = costoMat + costoElec + amortMant + laborFijos;
         const precioFinal = costoTotal * multi;
         const precioML = (precioFinal + mlF) / (1 - mlP);
-
         document.getElementById('outMat').innerText = format(costoMat);
         document.getElementById('outElec').innerText = format(costoElec);
         document.getElementById('outAmort').innerText = format(amortMant);
@@ -427,18 +367,15 @@
         document.getElementById('outProfit').innerText = format(precioFinal - costoTotal);
         document.getElementById('outFinal').innerText = format(precioFinal);
         document.getElementById('outML').innerText = format(precioML);
-
         return { costoTotal, precioFinal, peso, tTotal };
     }
-
     let projects = JSON.parse(localStorage.getItem('sky_db_vfinal')) || [];
-
     function saveProject() {
         const name = document.getElementById('projectName').value.trim();
         if (!name) return;
         const d = calcular();
         const project = {
-            id: Date.now(), name, date: new Date().toLocaleDateString(),
+            id: Date.now().toString(), name, date: new Date().toLocaleDateString(),
             price: d.precioFinal, weight: d.peso, time: d.tTotal.toFixed(1),
             inputs: {}
         };
@@ -446,16 +383,13 @@
             if(el.id && el.id !== 'projectName') project.inputs[el.id] = el.value;
         });
         const idx = projects.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
-        if (idx !== -1) {
-            if(confirm("¿Deseas actualizar el proyecto existente?")) projects[idx] = project; else return;
-        } else { projects.push(project); }
+        if (idx !== -1) { projects[idx] = project; } else { projects.push(project); }
         localStorage.setItem('sky_db_vfinal', JSON.stringify(projects));
         document.getElementById('projectName').value = "";
         render();
     }
-
     function loadProject(id) {
-        const p = projects.find(p => p.id === id);
+        const p = projects.find(p => p.id === id.toString());
         if (!p) return;
         Object.keys(p.inputs).forEach(key => {
             const el = document.getElementById(key);
@@ -466,45 +400,45 @@
         if(window.innerWidth <= 768) switchTab(0);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     function deleteProject(id) {
-        if(!confirm("¿Eliminar cotización?")) return;
-        projects = projects.filter(p => p.id !== id);
+        projects = projects.filter(p => p.id !== id.toString());
         localStorage.setItem('sky_db_vfinal', JSON.stringify(projects));
         render();
     }
-
     function render() {
         const list = document.getElementById('projectsList');
         if (projects.length === 0) {
-            list.innerHTML = '<p style="color:gray; text-align:center; padding:20px;">No hay proyectos.</p>';
+            list.innerHTML = '<p style="color:gray; text-align:center; padding:20px;">No hay proyectos guardados.</p>';
             return;
         }
         list.innerHTML = projects.map(p => `
             <div class="project-item">
                 <div class="project-info">
-                    <h4>${p.name}</h4>
+                    <h4>${escapeHTML(p.name)}</h4>
                     <p>${p.date} • ${p.weight}g • ${p.time}h • <b>${format(p.price)}</b></p>
                 </div>
                 <div class="project-actions">
-                    <button class="btn-icon" onclick="loadProject(${p.id})">✏️</button>
-                    <button class="btn-icon btn-delete" onclick="deleteProject(${p.id})">🗑️</button>
+                    <button class="btn-icon" onclick="loadProject('${p.id}')">✏️</button>
+                    <button class="btn-icon btn-delete" onclick="deleteProject('${p.id}')">🗑️</button>
                 </div>
             </div>
         `).join('');
     }
-
     function exportAll() {
         if (projects.length === 0) return;
-        let csv = "Proyecto,Fecha,Peso,Tiempo,Precio\n";
-        projects.forEach(p => csv += `${p.name},${p.date},${p.weight},${p.time},${p.price.toFixed(2)}\n`);
-        const blob = new Blob([csv], { type: 'text/csv' });
+        let csv = "\ufeffProyecto,Fecha,Peso(g),Tiempo(h),Precio Final\n";
+        projects.forEach(p => {
+            csv += `"${p.name}","${p.date}","${p.weight}","${p.time}","${p.price.toFixed(2)}"\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'sky3d_export.csv';
+        a.href = url;
+        a.download = 'sky3d_cotizaciones.csv';
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
     }
-
     document.addEventListener('DOMContentLoaded', () => {
         const triggers = document.querySelectorAll('.info-trigger');
         triggers.forEach(t => {
