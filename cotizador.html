@@ -247,7 +247,7 @@
                 <div class="input-group"><label>Watts Máquina</label><input type="number" id="watts" value="150" oninput="calcular()"></div>
             </div>
             <div class="row">
-                <div class="input-group"><label>Fallas (%)</label><input type="number" id="failRate" value="10" oninput="calcular()"></div>
+                <div class="input-group"><label>Fallas (%)</label><input type="number" id="failRate" value="20" oninput="calcular()"></div>
                 <div class="input-group">
                     <label>Gastos Extras ($)</label>
                     <input type="number" id="extras" value="0" placeholder="Ej: aro" oninput="calcular()">
@@ -443,7 +443,7 @@
         });
         document.getElementById('projectName').value = p.name;
         calcular();
-        if(window.innerWidth <= 768) switchTab(0); // Volver a la primera pestaña en móvil
+        if(window.innerWidth <= 768) switchTab(0);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -481,7 +481,7 @@
         const blob = new Blob([csv], { type: 'text/csv' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'sky3d_export_historial.csv';
+        a.download = 'cotizador_export_historial.csv';
         a.click();
     }
 
