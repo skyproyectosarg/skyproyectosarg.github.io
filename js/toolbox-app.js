@@ -76,11 +76,10 @@ const App = () => {
     };
 
     const tips = {
-        v6: { es: "Hotend clásico de E3D. Zona de fusión corta (~12mm). Ideal para precisión pero limitado en caudal máximo.", en: "Classic E3D hotend. Short melt zone (~12mm). Great for precision but limited in max flow." },
-        volcano: { es: "Hotend de alta capacidad. Bloque vertical con zona de fusión de ~20mm. Permite duplicar la velocidad de extrusión.", en: "High capacity hotend. Vertical block with ~20mm melt zone. Allows doubling extrusion speed." },
-        bambu: { es: "Hotend con calentador cerámico 360° y zona de fundido optimizada para CoreXY de ultra-velocidad.", en: "Hotend with 360° ceramic heater and melt zone optimized for ultra-high speed CoreXY." },
-        scarf: { es: "Técnica de laminado en rampa gradual que solapa el inicio y fin del perímetro para borrar visualmente la cicatriz.", en: "Gradual ramp slicing technique that overlaps perimeter start and end to visually erase the scar." },
-        order: { es: "El Scarf Seam requiere una base de paredes internas previa. Use siempre el orden Interior-Exterior.", en: "Scarf Seam requires a previous internal wall base. Always use Inner-Outer wall order." }
+        v6: { es: "Hotend clásico de E3D. Zona de fusión corta (~12mm). Ideal para precisión pero limitado en caudal máximo." },
+        volcano: { es: "Hotend de alta capacidad. Bloque vertical con zona de fusión de ~20mm. Permite duplicar la velocidad de extrusión." },
+        bambu: { es: "Hotend con calentador cerámico 360° y zona de fundido optimizada para CoreXY de ultra-velocidad." },
+        order: { es: "El Scarf Seam requiere una base de paredes internas previa. Use siempre el orden Interior-Exterior." }
     };
 
     const t = {
@@ -91,8 +90,7 @@ const App = () => {
                 { mat: 'PETG', temp: '60-65°C', time: '6-8h', desc: 'Crítico para evitar el goteo constante.' },
                 { mat: 'ABS/ASA', temp: '70-80°C', time: '6h+', desc: 'Elimina micro-burbujas en las paredes.' },
                 { mat: 'Nylon/TPU', temp: '75-85°C', time: '12h+', desc: 'Obligatorio: Higroscópicos en pocas horas.' },
-            ],
-            wikiTitle: "Manual de Calibración", wikiSub: "Documentación técnica oficial condensada para configuración profesional.", wikiBtn: "Wiki GitHub"
+            ]
         }
     };
 
@@ -257,7 +255,7 @@ const App = () => {
                                         {activeCalc === 'pa' && (<><InputGroup label="Valor Inicial" value={paData.start} onChange={(v) => setPaData({...paData, start: v})} /><InputGroup label="Paso" value={paData.step} onChange={(v) => setPaData({...paData, step: v})} /><InputGroup label="Altura Medida" value={paData.height} onChange={(v) => setPaData({...paData, height: v})} /></>)}
                                         {activeCalc === 'vol' && (<><InputGroup label="Inicio (mm³/s)" value={volData.start} onChange={(v) => setVolData({...volData, start: v})} /><InputGroup label="Paso" value={volData.step} onChange={(v) => setVolData({...volData, step: v})} /><InputGroup label="Altura Fallo" value={volData.height} onChange={(v) => setVolData({...volData, height: v})} /></>)}
                                         {activeCalc === 'vfa' && (<><InputGroup label="Velocidad Inicial" value={vfaData.start} onChange={(v) => setVfaData({...vfaData, start: v})} /><InputGroup label="Incremento" value={vfaData.step} onChange={(v) => setVfaData({...vfaData, step: v})} /><InputGroup label="Nivel" value={vfaData.level} onChange={(v) => setVfaData({...vfaData, level: v})} /></>)}
-                                        {activeCalc === 'shrink' && (<><InputGroup label="Medida Slicer" value={shrinkData.target} onChange={(v) => setShrinkData({...shrinkData, target: v})} /><InputGroup label="Medida Real (Fría)" value={shrinkData.measured} onChange={(v) => setShrinkData({...shrinkData, measured: v})} /></>)}
+                                        {activeCalc === 'shrink' && (<><InputGroup label="Medida Slicer" value={shrinkData.target} onChange={(v) => setShrinkData({...shrinkData, target: v})} /><InputGroup label="Medida Real" value={shrinkData.measured} onChange={(v) => setShrinkData({...shrinkData, measured: v})} /></>)}
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center justify-center text-center p-8 bg-[#8b5cf6]/5 rounded-3xl border-2 border-dashed border-[#8b5cf6]/20 min-h-[320px] shadow-inner">
@@ -290,7 +288,7 @@ const App = () => {
                                     )) : <p className="text-sm text-slate-600 italic py-3 text-center w-full uppercase">Vacío</p>}
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
                 ) : (
                     <div className="space-y-5 animate-in fade-in duration-500 pb-24">
@@ -298,18 +296,6 @@ const App = () => {
                             {guideItems.map((step, idx) => (
                                 <DocStep key={idx} title={step.title} iconName={step.icon} badge="Guía Técnica" expanded={expandedStep === idx} onClick={() => setExpandedStep(expandedStep === idx ? -1 : idx)}>{step.content}</DocStep>
                             ))}
-                        </div>
-                        <div className="bg-gradient-to-r from-violet-900/20 to-slate-900/30 p-10 rounded-3xl border border-[#8b5cf6]/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-                            <div className="flex items-start gap-5 text-left">
-                                <div className="p-4 bg-slate-800 rounded-2xl text-[#8b5cf6]"><Icon name="book-open" size={28} /></div>
-                                <div className="space-y-2 text-left">
-                                    <h4 className="text-2xl font-bold text-white italic">Wiki de Calibración</h4>
-                                    <p className="text-base text-slate-400 max-w-md">Documentación oficial de SoftFever para perfiles de alta calidad.</p>
-                                </div>
-                            </div>
-                            <a href="https://github.com/OrcaSlicer/OrcaSlicer/wiki/Calibration" target="_blank" rel="noreferrer" className="flex items-center gap-4 bg-[#8b5cf6] text-white px-10 py-4 rounded-xl font-bold hover:bg-violet-400 transition-all group">
-                                Abrir Wiki <Icon name="external-link" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            </a>
                         </div>
                     </div>
                 )}
