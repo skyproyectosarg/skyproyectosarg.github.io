@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sky Toolbox - Calibrador Maestro</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" defer></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
         * { box-sizing: border-box; }
@@ -16,28 +18,35 @@
         input[type=number] { -moz-appearance: textfield; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         select { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%238b5cf6' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em; padding-right: 2.5rem; appearance: none; }
-        .tech-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 10px; width: 300px; max-width: 85vw; padding: 14px; background: #0f172a; border: 1px solid #334155; border-radius: 14px; color: #e2e8f0; z-index: 100; line-height: 1.6; font-size: 13px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); white-space: normal; word-wrap: break-word; }
+        .tech-tooltip { position: absolute; bottom: 105%; left: 50%; transform: translateX(-50%); width: 280px; padding: 15px; background: #0f172a; border: 1px solid #334155; border-radius: 12px; color: #e2e8f0; z-index: 100; font-size: 13px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .btn-nav { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; transition: 0.2s; }
         .btn-nav.active { background: #8b5cf6; color: white; }
         .btn-nav.inactive { background: transparent; color: #64748b; }
-        .sb-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; cursor: pointer; width: 100%; border: none; transition: 0.2s; }
+        .sb-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; cursor: pointer; width: 100%; border: none; }
         .sb-btn.active { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.5); color: #8b5cf6; }
         .sb-btn.inactive { background: #0f172a; border: 1px solid #1e293b; color: #64748b; }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;color:#8b5cf6;font-family:monospace;">
+            INICIANDO SISTEMA SKY...
+        </div>
+    </div>
 
     <script>
-    (function() {
-        'use strict';
+    // Esta función envuelve todo para asegurar que React esté cargado antes de empezar
+    window.onload = function() {
+        if (typeof React === 'undefined') {
+            document.getElementById('root').innerHTML = '<div style="color:red;padding:20px;">Error: No se pudo cargar React. Revisa tu conexión.</div>';
+            return;
+        }
+
         var h = React.createElement;
         var useState = React.useState;
         var useEffect = React.useEffect;
         var useCallback = React.useCallback;
-        var useRef = React.useRef;
         var PURPLE = '#8b5cf6';
-        var materialsList = ['PLA', 'PETG', 'ABS', 'ASA', 'TPU', 'PET', 'NYLON', 'PC', 'Otros'];
 
         var iconPaths = {
             'layers': 'M12 2L2 7l10 5 10-5-10-5|M2 17l10 5 10-5|M2 12l10 5 10-5',
@@ -75,7 +84,7 @@
         }
 
         function InputGroup(p) {
-            return h('div', { style: { marginBottom: '18px' } }, h('label', { style: { display: 'block', fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', fontFamily: 'monospace' } }, p.label), h('input', { type: 'text', inputMode: 'decimal', value: p.value, onChange: function(e) { var v = e.target.value; if (v === '' || v === '-' || !isNaN(Number(v))) p.onChange(v); }, autoComplete: 'off', className: "w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 text-base md:text-lg text-white focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]/50 transition-all font-mono shadow-inner" }), p.help && h('p', { style: { fontSize: '11px', color: '#475569', marginTop: '5px', fontStyle: 'italic', fontWeight: 'bold', textTransform: 'uppercase' } }, p.help));
+            return h('div', { style: { marginBottom: '18px' } }, h('label', { style: { display: 'block', fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', color: '#64748b', marginBottom: '8px', fontFamily: 'monospace' } }, p.label), h('input', { type: 'text', inputMode: 'decimal', value: p.value, onChange: function(e) { var v = e.target.value; if (v === '' || v === '-' || !isNaN(Number(v))) p.onChange(v); }, autoComplete: 'off', className: "w-full bg-slate-950 border border-slate-700 rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-[#8b5cf6]/50 transition-all font-mono" }), p.help && h('p', { style: { fontSize: '11px', color: '#475569', marginTop: '5px', fontStyle: 'italic', fontWeight: 'bold', textTransform: 'uppercase' } }, p.help));
         }
 
         function DocStep(p) {
@@ -85,25 +94,25 @@
         function App() {
             var sTab = useState('calculators'); var activeTab = sTab[0], setActiveTab = sTab[1];
             var sCalc = useState('flow'); var activeCalc = sCalc[0], setActiveCalc = sCalc[1];
-            var sCopied = useState(false); var copied = sCopied[0], setCopied = sCopied[1];
-            var sSaved = useState(false); var saved = sSaved[0], setSaved = sSaved[1];
+            var sCop = useState(false); var copied = sCop[0], setCopied = sCop[1];
+            var sSav = useState(false); var saved = sSav[0], setSaved = sSav[1];
             var sExp = useState(-1); var expandedStep = sExp[0], setExpandedStep = sExp[1];
             var sMat = useState('PLA'); var material = sMat[0], setMaterial = sMat[1];
-            var sSymp = useState(null); var symptom = sSymp[0], setSymptom = sSymp[1];
-            var sHist = useState([]); var history = sHist[0], setHistory = sHist[1];
+            var sSym = useState(null); var symptom = sSym[0], setSymptom = sSym[1];
+            var sHis = useState([]); var history = sHis[0], setHistory = sHis[1];
 
-            var sf = useState({ current: 0.98, modifier: 5 }); var flowData = sf[0], setFlowData = sf[1];
-            var sp = useState({ start: 0, step: 0.02, height: 10 }); var paData = sp[0], setPaData = sp[1];
-            var sv = useState({ start: 5, step: 0.5, height: 20 }); var volData = sv[0], setVolData = sv[1];
-            var sg = useState({ start: 100, step: 20, level: 3 }); var vfaData = sg[0], setVfaData = sg[1];
-            var sk = useState({ target: 100, measured: 99.2 }); var shrinkData = sk[0], setShrinkData = sk[1];
+            var flowState = useState({ current: 0.98, modifier: 5 }); var flowData = flowState[0], setFlowData = flowState[1];
+            var paState = useState({ start: 0, step: 0.02, height: 10 }); var paData = paState[0], setPaData = paState[1];
+            var volState = useState({ start: 5, step: 0.5, height: 20 }); var volData = volState[0], setVolData = volState[1];
+            var vfaState = useState({ start: 100, step: 20, level: 3 }); var vfaData = vfaState[0], setVfaData = vfaState[1];
+            var shrinkState = useState({ target: 100, measured: 99.2 }); var shrinkData = shrinkState[0], setShrinkData = shrinkState[1];
 
             useEffect(function() {
                 var presets = { PLA: { f: 0.98, pa: 0.02, vs: 5, vh: 0.5 }, PETG: { f: 0.95, pa: 0.04, vs: 3, vh: 0.3 }, ABS: { f: 0.94, pa: 0.04, vs: 5, vh: 0.5 }, Otros: { f: 1.00, pa: 0.02, vs: 5, vh: 0.5 } };
                 var c = presets[material] || presets.Otros;
-                setFlowData(function(prev) { return { current: c.f, modifier: prev.modifier }; });
-                setPaData(function(prev) { return { start: prev.start, step: c.pa, height: prev.height }; });
-                setVolData(function(prev) { return { start: c.vs, step: c.vh, height: prev.height }; });
+                setFlowData(function(p) { return { current: c.f, modifier: p.modifier }; });
+                setPaData(function(p) { return { start: p.start, step: c.pa, height: p.height }; });
+                setVolData(function(p) { return { start: c.vs, step: c.vh, height: p.height }; });
             }, [material]);
 
             function getRes() {
@@ -111,32 +120,16 @@
                 if (activeCalc === 'flow') return (p(flowData.current) * (100 + p(flowData.modifier)) / 100).toFixed(4);
                 if (activeCalc === 'pa') return (p(paData.start) + (p(paData.height) * p(paData.step))).toFixed(4);
                 if (activeCalc === 'vol') return (p(volData.start) + (p(volData.height) * p(volData.step))).toFixed(2);
-                if (activeCalc === 'vfa') return (p(vfaData.start) + (p(vfa.step || 20) * (Math.max(1, parseInt(vfaData.level)) - 1))).toFixed(0);
+                if (activeCalc === 'vfa') return (p(vfaData.start) + (p(vfaData.step || 20) * (Math.max(1, parseInt(vfaData.level)) - 1))).toFixed(0);
                 if (activeCalc === 'shrink') return p(shrinkData.measured) === 0 ? '0.00' : (p(shrinkData.target) / p(shrinkData.measured) * 100).toFixed(2);
                 return '0.0000';
             }
 
-            function goToHelp(calcId) {
-                var map = { flow: 1, pa: 2, vol: 3, vfa: 4, shrink: 6 };
-                setActiveTab('guide'); setExpandedStep(map[calcId] || 0);
-            }
-
-            function saveToHistory() {
-                var res = getRes();
-                var item = { id: Date.now(), type: activeCalc.toUpperCase(), material: material, value: res + (activeCalc === 'shrink' ? '%' : ''), date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
-                setHistory(function(p) { return [item].concat(p).slice(0, 10); });
-                setSaved(true); setTimeout(function() { setSaved(false); }, 1500);
-            }
-
-            function copyRes() {
-                navigator.clipboard.writeText(getRes()).then(function() { setCopied(true); setTimeout(function() { setCopied(false); }, 2000); });
-            }
-
             var tips = {
-                v6: 'Hotend clásico de E3D. Zona de fusión corta (~12mm). Ideal para precisión pero limitado en caudal.',
-                volcano: 'Hotend de alta capacidad. Zona de fusión ~20mm. Permite duplicar la velocidad de extrusión.',
-                bambu: 'Hotend con calentador cerámico 360 grados optimizado para CoreXY de ultra-velocidad.',
-                order: 'El Scarf Seam requiere paredes internas previas. Usa siempre el orden Interior > Exterior.'
+                v6: 'Hotend clásico de E3D. Zona de fusión corta (~12mm). Ideal para precisión.',
+                volcano: 'Hotend de alta capacidad. Zona de fusión ~20mm. Duplica la velocidad.',
+                bambu: 'Hotend cerámico 360 grados optimizado para CoreXY de ultra-velocidad.',
+                order: 'Requiere paredes internas previas. Usa siempre el orden Interior > Exterior.'
             };
 
             var dryingData = [
@@ -147,58 +140,55 @@
             ];
 
             var guideItems = [
-                { title: "1. Torre de Temperatura", icon: 'thermometer', content: h('div', null, h('p', { style: { marginBottom: '12px', fontWeight: '600' } }, 'Cimiento de toda calibración exitosa. Conocé el límite térmico del polímero antes de tocar flujos o velocidades.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px', fontSize: '14px' } }, '• PLA: 190-230C | PETG: 235-260C | ABS/ASA: 245-275C | TPU: 215-240C.', h('br'), '• Iniciá la torre en el valor máximo recomendado por el fabricante y decrecé cada 5C.', h('br'), '• Temperatura ideal: la más baja posible que mantenga una adhesión de capas irrompible manualmente y puentes rectos.')) },
-                { title: "2. Relación de Flujo (Flow Ratio)", icon: 'activity', content: h('div', null, h('p', { style: { marginBottom: '12px' } }, 'Ajusta el volumen real de plástico respecto al comando del Slicer. Un error del 1% arruina los encajes mecánicos.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Pass 1: Imprimí bloques de -20 a +10. Buscá el que tenga la superficie 100% cerrada pero sin rebabas.', h('br'), '• Inspeccioná con luz lateral rasante: huecos entre líneas = falta flujo / crestas o arrastre = sobra flujo.')) },
-                { title: "3. Avance de Presión (PA)", icon: 'settings-2', content: h('div', null, h('p', { style: { marginBottom: '12px' } }, 'Compensa la elasticidad del filamento y la inercia del fundido para esquinas perfectas.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Direct Drive: 0.012 - 0.045 | Bowden: 0.12 - 0.55.', h('br'), '• Qué soluciona: Elimina esquinas abultadas, evita hilos al final de perímetros y garantiza flujo constante al iniciar líneas.')) },
+                { title: "1. Torre de Temperatura", icon: 'thermometer', content: h('div', null, h('p', { style: { marginBottom: '12px', fontWeight: '600' } }, 'Cimiento de toda calibración exitosa. Conocé el límite térmico del polímero.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px', fontSize: '14px' } }, '• PLA: 190-230C | PETG: 235-260C | ABS/ASA: 245-275C.', h('br'), '• Iniciá en el máximo y bajá cada 5C. La ideal mantiene adhesión irrompible manualmente.')) },
+                { title: "2. Relación de Flujo (Flow Ratio)", icon: 'activity', content: h('div', null, h('p', { style: { marginBottom: '12px' } }, 'Ajusta el volumen real de plástico respecto al comando del Slicer. Un error del 1% arruina los encajes.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Pass 1: Imprimí bloques de -20 a +10. Buscá superficie 100% cerrada pero sin rebabas.', h('br'), '• Inspeccioná con luz lateral rasante: huecos = falta flujo / crestas = sobra flujo.')) },
+                { title: "3. Avance de Presión (PA)", icon: 'settings-2', content: h('div', null, h('p', { style: { marginBottom: '12px' } }, 'Compensa la elasticidad del filamento para esquinas perfectas.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Direct Drive: 0.012 - 0.045 | Bowden: 0.12 - 0.55.', h('br'), '• Elimina esquinas abultadas y garantiza flujo constante al iniciar líneas.')) },
                 { title: "4. Límite de Velocidad Volumétrica", icon: 'gauge', content: h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, h('p', null, 'Determina el límite físico real de su Hotend en mm3/s.'), h('p', null, h(TechInfo, { term: 'Hotend V6', info: tips.v6 }), ': 12-15 mm3/s'), h('p', null, h(TechInfo, { term: 'Hotend Volcano', info: tips.volcano }), ': 24-32 mm3/s'), h('p', null, h(TechInfo, { term: 'Bambu Lab HF', info: tips.bambu }), ': 28-36 mm3/s')) },
-                { title: "5. Test de Vibraciones (VFA)", icon: 'zap', content: h('div', null, h('p', null, 'Vertical Fine Artifacts: marcas visuales repetitivas causadas por la resonancia de los motores.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Metodología: Imprimí una pared alta aumentando la velocidad 20mm/s cada 10mm de altura.', h('br'), '• Acción: Identificá el escalón donde la pared se ve como un espejo liso y usá esa velocidad para perímetros externos.')) },
-                { title: "6. Costuras Invisibles (Scarf Seams)", icon: 'sparkles', content: h('div', null, h('p', null, 'Tecnología revolucionaria para borrar la cicatriz Z mediante rampas geométricas diagonales.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Scarf Flow: 100% ideal. Si hay hueco, subí a 105%.', h('br'), '• Requiere orden de paredes: ', h(TechInfo, { term: 'Interior-Exterior', info: tips.order }))) },
-                { title: "7. Encogimiento y Escala", icon: 'maximize', content: h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, h('p', null, 'Si las paredes miden bien pero la pieza es chica, es contracción térmica fría, no subextrusión.'), h('p', null, '• PLA/PETG: 0.1% - 0.2% | ABS/ASA: 0.6% - 0.9% | Nylon/PC: 1.0% - 1.6%.')) },
-                { title: "8. Humedad y Secado", icon: 'wind', content: h('div', null, h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' } }, h('button', { onClick: function() { setSymptom('s'); }, style: { padding: '12px', borderRadius: '10px', background: symptom === 's' ? PURPLE : '#1e293b', color: 'white', fontWeight: 'bold' } }, 'Velo'), h('button', { onClick: function() { setSymptom('p'); }, style: { padding: '12px', borderRadius: '10px', background: symptom === 'p' ? PURPLE : '#1e293b', color: 'white', fontWeight: 'bold' } }, 'Popping')), symptom && h('p', { style: { fontStyle: 'italic', fontSize: '13px' } }, symptom === 's' ? 'Puede ser retracción o humedad leve. Calibrá Pressure Advance antes de secar.' : 'HUMEDAD CRÍTICA. Vapor de agua a presión saliendo del nozzle. Secado obligatorio inmediato.'), h('div', { style: { borderRadius: '10px', border: '1px solid #1e293b', overflow: 'hidden', marginTop: '12px' } }, h('table', { style: { width: '100%', fontSize: '13px' } }, h('tbody', null, dryingData.map(function(r, i) { return h('tr', { key: i, style: { borderTop: '1px solid #1e293b' } }, h('td', { style: { padding: '10px', color: PURPLE, fontWeight: '700' } }, r.mat), h('td', { style: { padding: '10px' } }, r.temp), h('td', { style: { padding: '10px' } }, r.time)); })))))) }
+                { title: "5. Vibraciones (VFA)", icon: 'zap', content: h('div', null, h('p', null, 'Vertical Fine Artifacts: marcas visuales por resonancia de motores.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Metodología: Imprimí pared alta aumentando velocidad 20mm/s cada 10mm.', h('br'), '• Acción: Identificá el escalón donde la pared se ve como espejo liso.')) },
+                { title: "6. Costuras Invisibles (Scarf Seams)", icon: 'sparkles', content: h('div', null, h('p', null, 'Tecnología para borrar la cicatriz Z mediante rampas geométricas diagonales.'), h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, '• Scarf Flow: 100% ideal. Si hay hueco, subí a 105%.', h('br'), '• Requiere orden: ', h(TechInfo, { term: 'Interior-Exterior', info: tips.order }))) },
+                { title: "7. Encogimiento y Escala", icon: 'maximize', content: h('div', { style: { padding: '16px', background: 'rgba(15,23,42,0.5)', borderRadius: '10px' } }, h('p', null, 'Si las paredes miden bien pero la pieza es chica, es contracción térmica fría.'), h('p', null, '• PLA/PETG: 0.1% - 0.2% | ABS/ASA: 0.6% - 0.9% | Nylon/PC: 1.0% - 1.6%.')) },
+                { title: "8. Humedad y Secado", icon: 'wind', content: h('div', null, h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' } }, h('button', { onClick: function() { setSymptom('s'); }, style: { padding: '12px', borderRadius: '10px', background: symptom === 's' ? PURPLE : '#1e293b', color: 'white', fontWeight: 'bold' } }, 'Velo'), h('button', { onClick: function() { setSymptom('p'); }, style: { padding: '12px', borderRadius: '10px', background: symptom === 'p' ? PURPLE : '#1e293b', color: 'white', fontWeight: 'bold' } }, 'Popping')), symptom && h('p', { style: { fontStyle: 'italic', fontSize: '13px' } }, symptom === 's' ? 'Puede ser retracción o humedad leve. Calibrá PA antes de secar.' : 'HUMEDAD CRÍTICA. Secado obligatorio inmediato.'), h('div', { style: { borderRadius: '10px', border: '1px solid #1e293b', overflow: 'hidden', marginTop: '12px' } }, h('table', { style: { width: '100%', fontSize: '13px' } }, h('tbody', null, dryingData.map(function(r, i) { return h('tr', { key: i, style: { borderTop: '1px solid #1e293b' } }, h('td', { style: { padding: '10px', color: PURPLE, fontWeight: '700' } }, r.mat), h('td', { style: { padding: '10px' } }, r.temp), h('td', { style: { padding: '10px' } }, r.time)); })))))) }
             ];
 
             var sidebarItems = [{ id: 'flow', l: 'Flujo', i: 'activity' }, { id: 'pa', l: 'Presion (PA)', i: 'settings-2' }, { id: 'vol', l: 'Caudal', i: 'gauge' }, { id: 'vfa', l: 'VFA', i: 'zap' }, { id: 'shrink', l: 'Escala', i: 'maximize' }];
 
-            return h('div', { style: { minHeight: '100vh', background: '#0a0f18', color: '#f1f5f9' } },
-                h('div', { style: { maxWidth: '960px', margin: '0 auto', padding: '24px 16px' } },
-                    h('header', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '16px', borderBottom: '1px solid #1e293b', paddingBottom: '24px', marginBottom: '32px' } },
-                        h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px' } },
-                            h('div', { style: { width: '50px', height: '50px', background: PURPLE, borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', boxShadow: '0 0 20px rgba(139,92,246,0.3)' } }, h(Icon, { name: 'layers', size: 26 })),
-                            h('div', null, h('h1', { style: { fontSize: '30px', fontWeight: '900', fontStyle: 'italic', margin: 0 } }, 'Sky Toolbox'), h('p', { style: { color: '#64748b', fontSize: '11px', fontWeight: '700' } }, 'HERRAMIENTAS PARA MAKERS'))),
-                        h('nav', { style: { display: 'flex', background: 'rgba(15,23,42,0.8)', padding: '5px', borderRadius: '12px', border: '1px solid #1e293b' } },
-                            h('button', { className: 'btn-nav ' + (activeTab === 'calculators' ? 'active' : 'inactive'), onClick: function() { setActiveTab('calculators'); } }, 'Calculadoras'),
-                            h('button', { className: 'btn-nav ' + (activeTab === 'guide' ? 'active' : 'inactive'), onClick: function() { setActiveTab('guide'); } }, 'Ayuda'))),
-                    activeTab === 'calculators' ? h('div', { style: { display: 'grid', gridTemplateColumns: 'minmax(180px, 220px) 1fr', gap: '20px' } },
-                        h('div', null,
-                            h('div', { style: { background: 'rgba(15,23,42,0.5)', padding: '14px', borderRadius: '12px', border: '1px solid #1e293b', marginBottom: '12px' } },
-                                h('label', { style: { display: 'block', fontSize: '10px', fontWeight: '900', color: '#64748b', fontStyle: 'italic' } }, 'Filamento:'),
-                                h('select', { value: material, onChange: function(e) { setMaterial(e.target.value); }, style: { width: '100%', background: '#020617', border: '1px solid #1e293b', borderRadius: '8px', padding: '9px 12px', color: 'white' } },
-                                    materialsList.map(function(m) { return h('option', { key: m, value: m }, m); }))),
-                            h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
-                                sidebarItems.map(function(c) { return h('button', { key: c.id, className: 'sb-btn ' + (activeCalc === c.id ? 'active' : 'inactive'), onClick: function() { setActiveCalc(c.id); } }, h(Icon, { name: c.i, size: 17 }), c.l); }))),
-                        h('div', null,
-                            h('div', { style: { background: 'rgba(15,23,42,0.5)', border: '1px solid #1e293b', borderRadius: '18px', padding: '24px' } },
-                                h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' } },
-                                    h('div', null,
-                                        h('h3', { style: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: '800', fontStyle: 'italic', marginBottom: '20px' } }, h(Icon, { name: 'cpu', style: { color: PURPLE } }), 'Datos'),
-                                        activeCalc === 'flow' && h(React.Fragment, null, h(InputGroup, { label: 'Flujo Actual', value: flowData.current, onChange: function(v) { setFlowData({ current: v, modifier: flowData.modifier }); } }), h(InputGroup, { label: 'Modificador', value: flowData.modifier, onChange: function(v) { setFlowData({ current: flowData.current, modifier: v }); } })),
-                                        activeCalc === 'pa' && h(React.Fragment, null, h(InputGroup, { label: 'Valor Inicial', value: paData.start, onChange: function(v) { setPaData({ start: v, step: paData.step, height: paData.height }); } }), h(InputGroup, { label: 'Paso', value: paData.step, onChange: function(v) { setPaData({ start: paData.start, step: v, height: paData.height }); } }), h(InputGroup, { label: 'Altura', value: paData.height, onChange: function(v) { setPaData({ start: paData.start, step: paData.step, height: v }); } })),
-                                        activeCalc === 'vol' && h(React.Fragment, null, h(InputGroup, { label: 'Inicio', value: volData.start, onChange: function(v) { setVolData({ start: v, step: volData.step, height: volData.height }); } }), h(InputGroup, { label: 'Paso', value: volData.step, onChange: function(v) { setVolData({ start: volData.start, step: v, height: volData.height }); } }), h(InputGroup, { label: 'Fallo', value: volData.height, onChange: function(v) { setVolData({ start: volData.start, step: volData.step, height: v }); } })),
-                                        activeCalc === 'vfa' && h(React.Fragment, null, h(InputGroup, { label: 'Velocidad', value: vfaData.start, onChange: function(v) { setVfaData({ start: v, step: vfaData.step, level: vfaData.level }); } }), h(InputGroup, { label: 'Incremento', value: vfaData.step, onChange: function(v) { setVfaData({ start: vfaData.start, step: v, level: vfaData.level }); } }), h(InputGroup, { label: 'Nivel', value: vfaData.level, onChange: function(v) { setVfaData({ start: vfaData.start, step: vfaData.step, level: v }); } })),
-                                        activeCalc === 'shrink' && h(React.Fragment, null, h(InputGroup, { label: 'Slicer', value: shrinkData.target, onChange: function(v) { setShrinkData({ target: v, measured: shrinkData.measured }); } }), h(InputGroup, { label: 'Real', value: shrinkData.measured, onChange: function(v) { setShrinkData({ target: shrinkData.target, measured: v }); } }))),
-                                    h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' } },
-                                        h('p', { style: { color: PURPLE, fontSize: '11px', fontWeight: '900' } }, 'Sugerido'),
-                                        h('button', { onClick: function() { goToHelp(activeCalc); }, style: { fontSize: '11px', color: '#475569', background: 'none', border: 'none', cursor: 'pointer', marginBottom: '16px' } }, 'Ver manual'),
-                                        h('div', { style: { fontSize: '64px', fontWeight: '900', color: 'white' } }, getRes(), activeCalc === 'shrink' && '%'),
-                                        h('div', { style: { display: 'flex', gap: '8px', marginTop: '20px' } },
-                                            h('button', { onClick: copyRes, style: { padding: '12px 24px', borderRadius: '10px', border: 'none', background: copied ? '#16a34a' : PURPLE, color: 'white', fontWeight: '700', cursor: 'pointer' } }, copied ? 'Listo!' : 'Copiar'),
-                                            h('button', { onClick: saveToHistory, style: { padding: '12px 16px', borderRadius: '10px', border: '1px solid #334155', background: saved ? '#16a34a' : '#1e293b', color: 'white', cursor: 'pointer' } }, h(Icon, { name: saved ? 'check-circle-2' : 'save', size: 18 }))))))))
+            return h('div', { style: { maxWidth: '960px', margin: '0 auto', padding: '24px 16px' } },
+                h('header', { style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '16px', borderBottom: '1px solid #1e293b', paddingBottom: '24px', marginBottom: '32px' } },
+                    h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px' } },
+                        h('div', { style: { width: '50px', height: '50px', background: PURPLE, borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', boxShadow: '0 0 20px rgba(139,92,246,0.3)' } }, h(Icon, { name: 'layers', size: 26 })),
+                        h('div', null, h('h1', { style: { fontSize: '30px', fontWeight: '900', fontStyle: 'italic', margin: 0 } }, 'Sky Toolbox'), h('p', { style: { color: '#64748b', fontSize: '11px', fontWeight: '700' } }, 'HERRAMIENTAS PARA MAKERS'))),
+                    h('nav', { style: { display: 'flex', background: 'rgba(15,23,42,0.8)', padding: '5px', borderRadius: '12px', border: '1px solid #1e293b' } },
+                        h('button', { className: 'btn-nav ' + (activeTab === 'calculators' ? 'active' : 'inactive'), onClick: function() { setActiveTab('calculators'); } }, 'Calculadoras'),
+                        h('button', { className: 'btn-nav ' + (activeTab === 'guide' ? 'active' : 'inactive'), onClick: function() { setActiveTab('guide'); } }, 'Ayuda'))),
+                activeTab === 'calculators' ? h('div', { style: { display: 'grid', gridTemplateColumns: 'minmax(180px, 220px) 1fr', gap: '20px' } },
+                    h('div', null,
+                        h('div', { style: { background: 'rgba(15,23,42,0.5)', padding: '14px', borderRadius: '12px', border: '1px solid #1e293b', marginBottom: '12px' } },
+                            h('label', { style: { display: 'block', fontSize: '10px', fontWeight: '900', color: '#64748b', fontStyle: 'italic' } }, 'Filamento:'),
+                            h('select', { value: material, onChange: function(e) { setMaterial(e.target.value); }, style: { width: '100%', background: '#020617', border: '1px solid #1e293b', borderRadius: '8px', padding: '9px 12px', color: 'white' } },
+                                materialsList.map(function(m) { return h('option', { key: m, value: m }, m); }))),
+                        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+                            sidebarItems.map(function(c) { return h('button', { key: c.id, className: 'sb-btn ' + (activeCalc === c.id ? 'active' : 'inactive'), onClick: function() { setActiveCalc(c.id); } }, h(Icon, { name: c.i, size: 17 }), c.l); }))),
+                    h('div', null,
+                        h('div', { style: { background: 'rgba(15,23,42,0.5)', border: '1px solid #1e293b', borderRadius: '18px', padding: '24px' } },
+                            h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' } },
+                                h('div', { className: "space-y-6" },
+                                    h('h3', { style: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: '800', fontStyle: 'italic', marginBottom: '20px' } }, h(Icon, { name: 'cpu', style: { color: PURPLE } }), 'Datos'),
+                                    activeCalc === 'flow' && h(React.Fragment, null, h(InputGroup, { label: 'Flujo Actual', value: flowData.current, onChange: function(v) { setFlowData({ current: v, modifier: flowData.modifier }); } }), h(InputGroup, { label: 'Modificador', value: flowData.modifier, onChange: function(v) { setFlowData({ current: flowData.current, modifier: v }); } })),
+                                    activeCalc === 'pa' && h(React.Fragment, null, h(InputGroup, { label: 'Valor Inicial', value: paData.start, onChange: function(v) { setPaData({ start: v, step: paData.step, height: paData.height }); } }), h(InputGroup, { label: 'Paso', value: paData.step, onChange: function(v) { setPaData({ start: paData.start, step: v, height: paData.height }); } }), h(InputGroup, { label: 'Altura', value: paData.height, onChange: function(v) { setPaData({ start: paData.start, step: paData.step, height: v }); } })),
+                                    activeCalc === 'vol' && h(React.Fragment, null, h(InputGroup, { label: 'Inicio', value: volData.start, onChange: function(v) { setVolData({ start: v, step: volData.step, height: volData.height }); } }), h(InputGroup, { label: 'Paso', value: volData.step, onChange: function(v) { setVolData({ start: volData.start, step: v, height: volData.height }); } }), h(InputGroup, { label: 'Altura Fallo', value: volData.height, onChange: function(v) { setVolData({ start: volData.start, step: volData.step, height: v }); } })),
+                                    activeCalc === 'vfa' && h(React.Fragment, null, h(InputGroup, { label: 'Velocidad', value: vfaData.start, onChange: function(v) { setVfaData({ start: v, step: vfaData.step, level: vfaData.level }); } }), h(InputGroup, { label: 'Incremento', value: vfaData.step, onChange: function(v) { setVfaData({ start: vfaData.start, step: v, level: vfaData.level }); } }), h(InputGroup, { label: 'Nivel', value: vfaData.level, onChange: function(v) { setVfaData({ start: vfaData.start, step: vfaData.step, level: v }); } })),
+                                    activeCalc === 'shrink' && h(React.Fragment, null, h(InputGroup, { label: 'Slicer', value: shrinkData.target, onChange: function(v) { setShrinkData({ target: v, measured: shrinkData.measured }); } }), h(InputGroup, { label: 'Real', value: shrinkData.measured, onChange: function(v) { setShrinkData({ target: shrinkData.target, measured: v }); } }))),
+                                h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' } },
+                                    h('p', { style: { color: PURPLE, fontSize: '11px', fontWeight: '900', textTransform: 'uppercase' } }, 'Sugerido'),
+                                    h('div', { style: { fontSize: '64px', fontWeight: '900', color: 'white', margin: '20px 0' } }, getRes(), activeCalc === 'shrink' && '%'),
+                                    h('button', { onClick: function() { navigator.clipboard.writeText(getRes()); }, style: { background: PURPLE, color: 'white', padding: '12px 24px', borderRadius: '10px', border: 'none', fontWeight: 'bold', cursor: 'pointer' } }, 'Copiar'))))))
                 : h('div', null, guideItems.map(function(s, i) { return h(DocStep, { key: i, title: s.title, iconName: s.icon, badge: 'Guia Tecnica', expanded: expandedStep === i, onClick: function() { setExpandedStep(expandedStep === i ? -1 : i); } }, s.content); })),
-                h('footer', { style: { marginTop: '40px', paddingTop: '24px', borderTop: '1px solid #1e293b', display: 'flex', justifyContent: 'space-between', color: '#475569', fontSize: '11px' } }, h('p', null, 'Sky Toolbox @ sky3darg'), h('p', null, '2026 Sky 3D')));
+                h('footer', { style: { marginTop: '40px', paddingTop: '24px', borderTop: '1px solid #1e293b', display: 'flex', justifyContent: 'space-between', color: '#475569', fontSize: '11px' } }, h('p', null, 'Sky Toolbox @ sky3darg'), h('p', null, '2026 Sky 3D'))
+            );
         }
 
         ReactDOM.createRoot(document.getElementById('root')).render(h(App));
-    })();
+    };
     </script>
 </body>
 </html>
