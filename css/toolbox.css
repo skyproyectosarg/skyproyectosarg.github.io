@@ -57,6 +57,7 @@ body {
 .sky-card:hover {
     border-color: var(--sky-blue);
     transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .sky-card.disabled { opacity: 0.4; cursor: not-allowed; }
@@ -84,30 +85,34 @@ body {
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 1.5rem;
-    font-size: 1rem;
 }
 
-/* Formularios e interfaz interna */
+/* Sección de Ayuda e Instrucciones */
 .tool-help {
     background: #0d1117;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
     color: var(--text-dim);
     border: 1px dashed #30363d;
+    line-height: 1.5;
 }
 
-.tool-form label { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+.tool-help strong { color: var(--sky-blue); }
+
+/* Formulario */
+.tool-form label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
 .tool-form input {
     width: 100%;
     padding: 14px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     background: #0d1117;
     border: 1px solid #30363d;
     color: white;
     border-radius: 8px;
     box-sizing: border-box;
+    font-size: 1rem;
 }
 
 .btn-run {
@@ -120,6 +125,7 @@ body {
     font-weight: 800;
     cursor: pointer;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .result-box {
