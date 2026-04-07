@@ -1,0 +1,116 @@
+:root {
+    --bg-dark: #0a0c10;
+    --card-bg: #161b22;
+    --accent-blue: #00d1ff;
+    --text-main: #f0f6fc;
+    --text-dim: #8b949e;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+.sky-nav {
+    background: #10141d;
+    padding: 1.2rem;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    justify-content: center;
+}
+
+.sky-logo { font-weight: 800; letter-spacing: 2px; font-size: 1.4rem; }
+.accent { color: var(--accent-blue); }
+
+.sky-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+.sky-header { text-align: center; margin-bottom: 3.5rem; }
+
+.sky-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.sky-card {
+    background: var(--card-bg);
+    border: 1px solid #30363d;
+    border-radius: 14px;
+    padding: 1.8rem;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sky-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 209, 255, 0.15);
+}
+
+.sky-card.disabled { opacity: 0.4; cursor: not-allowed; }
+.sky-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.hidden { display: none; }
+
+.sky-tool-area {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--accent-blue);
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.sky-btn-back {
+    background: none;
+    border: none;
+    color: var(--accent-blue);
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Formulario interno */
+.tool-form input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.btn-run {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-blue);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #0d1117;
+    border-left: 5px solid var(--accent-blue);
+    border-radius: 4px;
+}
