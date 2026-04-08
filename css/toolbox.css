@@ -1,137 +1,49 @@
-:root {
-    --bg-dark: #0a0c10;
-    --card-bg: #161b22;
-    --sky-blue: #00d1ff;
-    --text-main: #f0f6fc;
-    --text-dim: #8b949e;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0a0f18; 
+    color: #f1f5f9; 
+    font-size: 16px; 
 }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    -webkit-font-smoothing: antialiased;
+/* Ocultar flechas de inputs numéricos */
+input::-webkit-outer-spin-button, 
+input::-webkit-inner-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 
-.sky-nav {
-    background: #10141d;
-    padding: 1.2rem;
-    border-bottom: 1px solid #30363d;
-    display: flex;
-    justify-content: center;
+input[type=number] { -moz-appearance: textfield; }
+
+.violet-glow { box-shadow: 0 0 40px rgba(139, 92, 246, 0.08); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Estilo del selector de materiales */
+select { 
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%238b5cf6' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+    background-position: right 0.75rem center; 
+    background-repeat: no-repeat; 
+    background-size: 1.25em 1.25em; 
+    padding-right: 2.5rem; 
+    appearance: none; 
 }
 
-.sky-logo { 
-    text-decoration: none;
-    color: white;
-    font-weight: 800; 
-    letter-spacing: 2px; 
-    font-size: 1.4rem; 
-}
-.accent { color: var(--sky-blue); }
-
-.sky-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2.5rem;
+/* Tooltips Técnicos */
+.tech-tooltip {
+    width: 320px;
+    max-width: 85vw;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal;
+    word-wrap: break-word;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.9));
+    font-size: 13px;
 }
 
-.sky-header { text-align: center; margin-bottom: 3.5rem; }
-
-.sky-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.sky-card {
-    background: var(--card-bg);
-    border: 1px solid #30363d;
-    border-radius: 14px;
-    padding: 2rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.sky-card:hover {
-    border-color: var(--sky-blue);
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-}
-
-.sky-card.disabled { opacity: 0.4; cursor: not-allowed; }
-.sky-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
-
-.hidden { display: none; }
-
-.sky-tool-area {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid var(--sky-blue);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.sky-btn-back {
-    background: none;
-    border: none;
-    color: var(--sky-blue);
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 1.5rem;
-}
-
-/* Sección de Ayuda e Instrucciones */
-.tool-help {
-    background: #0d1117;
-    padding: 18px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    border: 1px dashed #30363d;
-    line-height: 1.5;
-}
-
-.tool-help strong { color: var(--sky-blue); }
-
-/* Formulario */
-.tool-form label { display: block; margin-bottom: 8px; font-size: 0.9rem; }
-.tool-form input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 20px;
-    background: #0d1117;
-    border: 1px solid #30363d;
-    color: white;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 1rem;
-}
-
-.btn-run {
-    width: 100%;
-    padding: 14px;
-    background: var(--sky-blue);
-    border: none;
-    border-radius: 8px;
-    color: #000;
-    font-weight: 800;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.result-box {
-    margin-top: 25px;
-    padding: 20px;
-    background: #0d1117;
-    border-left: 5px solid var(--sky-blue);
-    border-radius: 4px;
+@media (max-width: 640px) {
+    .tech-tooltip {
+        width: 260px;
+    }
 }
