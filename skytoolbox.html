@@ -10,14 +10,15 @@
     <meta name="keywords" content="skydev, skytoolbox, calibracion 3d, orcaslicer, impresion 3d, franco jesus pacheco, catamarca">
     <meta name="author" content="Franco Jesús Pacheco">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://sky3d.com.ar; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
+    <!-- EL ARREGLO ESTÁ AQUÍ: Se añadió 'unsafe-eval' en script-src para permitir que Tailwind compile los estilos -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://sky3d.com.ar; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
 
     <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
     <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
     <meta name="theme-color" content="#0a0f18">
 
-    <!-- Tailwind & FontAwesome (Sin React ni Babel) -->
+    <!-- Tailwind & FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -343,17 +344,17 @@
                                 <div class="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 space-y-4 shadow-inner">
                                     <p class="font-bold text-[#8b5cf6] uppercase tracking-tighter text-xs">Límites de Referencia:</p>
                                     <div class="flex flex-col border-l-2 border-[#8b5cf6]/30 pl-3">
-                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6]">Hotend V6</span>
+                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6] w-fit">Hotend V6</span>
                                         <p class="text-xs italic mt-1">Hotend clásico de E3D. Zona de fusión corta (~12mm). Ideal para precisión pero limitado en caudal máximo.</p>
                                         <span class="text-white font-mono text-base mt-1">12 - 15 mm³/s</span>
                                     </div>
                                     <div class="flex flex-col border-l-2 border-[#8b5cf6]/30 pl-3 mt-3">
-                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6]">Hotend Volcano</span>
+                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6] w-fit">Hotend Volcano</span>
                                         <p class="text-xs italic mt-1">Hotend de alta capacidad. Bloque vertical con zona de fusión de ~20mm. Permite duplicar la velocidad de extrusión.</p>
                                         <span class="text-white font-mono text-base mt-1">24 - 32 mm³/s</span>
                                     </div>
                                     <div class="flex flex-col border-l-2 border-[#8b5cf6]/30 pl-3 mt-3">
-                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6]">Bambu Lab HF</span>
+                                        <span class="text-white font-bold px-1 rounded-sm border-b border-dashed border-[#8b5cf6] w-fit">Bambu Lab HF</span>
                                         <p class="text-xs italic mt-1">Hotend con calentador cerámico 360° y zona de fundido optimizada para CoreXY de ultra-velocidad.</p>
                                         <span class="text-white font-mono text-base mt-1">28 - 36 mm³/s</span>
                                     </div>
