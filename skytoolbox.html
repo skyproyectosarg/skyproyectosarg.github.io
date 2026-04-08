@@ -7,7 +7,7 @@
     <title>Sky Toolbox | Calibrador Maestro 3D</title>
     
     <meta name="description" content="Sky Toolbox 3D: Herramienta profesional de calibración para impresión 3D. Calcula Flow, Pressure Advance, Velocidad Volumétrica y más.">
-    <meta name="keywords" content="skydev, skytoolbox, calibracion 3d, orcaslicer, impresion 3d, catamarca">
+    <meta name="keywords" content="skydev, skytoolbox, calibracion 3d, orcaslicer, impresion 3d, franco jesus pacheco, catamarca">
     <meta name="author" content="Franco Jesús Pacheco">
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://sky3d.com.ar; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;">
@@ -21,7 +21,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
@@ -64,10 +64,7 @@
         const materialsList = ['PLA', 'PETG', 'ABS', 'ASA', 'TPU', 'PET', 'NYLON', 'PC', 'Otros'];
 
         const Icon = ({ name, size = 20, className = "" }) => {
-            useEffect(() => {
-                if (window.lucide) window.lucide.createIcons();
-            }, [name]);
-            return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
+            return <i className={`${name} ${className}`} style={{ fontSize: size, width: size, height: size, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}></i>;
         };
 
         const TechInfo = ({ term, info }) => {
@@ -83,7 +80,7 @@
                     {show && (
                         <span className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 tech-tooltip p-4 bg-slate-900 border border-slate-700 rounded-2xl leading-relaxed text-slate-200 z-[100] animate-in fade-in slide-in-from-bottom-2">
                             <span className="flex items-center gap-2 font-black text-[#8b5cf6] uppercase mb-2">
-                                <Icon name="info" size={14} className="text-[#8b5cf6]" /> {term}
+                                <Icon name="fas fa-circle-info" size={14} className="text-[#8b5cf6]" /> {term}
                             </span>
                             {info}
                             <span className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-700"></span>
@@ -224,7 +221,7 @@
             };
 
             const guideItems = [
-                { title: t.stepTitles[0], icon: "thermometer", content: (
+                { title: t.stepTitles[0], icon: "fas fa-temperature-half", content: (
                     <div className="space-y-4 text-left">
                         <p className="text-slate-300 text-base md:text-lg leading-relaxed font-semibold">Este es el cimiento de cualquier calibración exitosa. Antes de tocar flujos o velocidades, debemos conocer el límite térmico del polímero específico.</p>
                         <div className="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 leading-relaxed">
@@ -234,7 +231,7 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[1], icon: "activity", content: (
+                { title: t.stepTitles[1], icon: "fas fa-chart-line", content: (
                     <div className="space-y-4 text-left">
                         <p className="text-slate-300 text-base md:text-lg leading-relaxed font-semibold">El Ratio de Flujo (o Multiplicador de Extrusión) ajusta el volumen real de plástico respecto al comando del Slicer. Un error del 1% arruina los encajes mecánicos y la estética.</p>
                         <div className="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 leading-relaxed">
@@ -244,7 +241,7 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[2], icon: "settings-2", content: (
+                { title: t.stepTitles[2], icon: "fas fa-sliders", content: (
                     <div className="space-y-4 text-left">
                         <p className="text-slate-300 text-base md:text-lg leading-relaxed font-semibold">El Pressure Advance (PA) compensa la elasticidad del filamento y la inercia del fundido dentro del Hotend. Es vital para la nitidez en esquinas.</p>
                         <div className="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 leading-relaxed">
@@ -254,7 +251,7 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[3], icon: "gauge", content: (
+                { title: t.stepTitles[3], icon: "fas fa-gauge-high", content: (
                     <div className="space-y-4 text-left">
                         <p className="text-slate-300 text-base md:text-lg leading-relaxed font-semibold">Determina el límite físico real de su Hotend (mm³/s). Es el "techo" de rendimiento de su hardware, por encima del cual el motor saltará o habrá subextrusión severa.</p>
                         <div className="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 space-y-4 shadow-inner">
@@ -274,7 +271,7 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[4], icon: "zap", content: (
+                { title: t.stepTitles[4], icon: "fas fa-bolt", content: (
                     <div className="space-y-4 text-left">
                         <p className="text-slate-300 text-base md:text-lg leading-relaxed font-semibold">Las Vertical Fine Artifacts (VFA) son marcas visuales repetitivas causadas por la resonancia de los motores paso a paso en velocidades específicas.</p>
                         <div className="p-5 bg-slate-800/30 rounded-xl border border-slate-800 text-sm md:text-base text-slate-400 leading-relaxed">
@@ -284,7 +281,7 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[5], icon: "sparkles", content: (
+                { title: t.stepTitles[5], icon: "fas fa-wand-magic-sparkles", content: (
                     <div className="space-y-4 text-sm md:text-base text-slate-400 leading-relaxed text-left">
                         <p className="text-slate-300 text-base md:text-lg font-bold uppercase tracking-tighter">Tecnología revolucionaria para borrar la cicatriz de la costura (Z-Seam) mediante rampas geométricas diagonales.</p>
                         <div className="p-5 bg-slate-800/30 rounded-2xl border border-slate-800 space-y-4 shadow-inner">
@@ -296,10 +293,10 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[6], icon: "maximize", content: (
+                { title: t.stepTitles[6], icon: "fas fa-expand", content: (
                     <div className="space-y-6 text-left">
                         <div className="flex gap-4 items-start bg-slate-900/50 p-5 rounded-xl border border-slate-800 shadow-inner text-base">
-                            <Icon name="alert-triangle" className="text-amber-500 shrink-0 mt-1" size={24} />
+                            <Icon name="fas fa-triangle-exclamation" className="text-amber-500 shrink-0 mt-1" size={24} />
                             <div>
                                 <p className="text-slate-100 text-lg font-bold uppercase mb-2 tracking-tighter italic">Física de Polímeros vs Configuración</p>
                                 <p className="text-slate-300 leading-relaxed font-medium">
@@ -320,11 +317,11 @@
                         </div>
                     </div>
                 )},
-                { title: t.stepTitles[7], icon: "wind", content: (
+                { title: t.stepTitles[7], icon: "fas fa-wind", content: (
                     <div className="space-y-6 text-left">
                         <div className="bg-slate-950/50 p-6 rounded-xl border border-slate-800 shadow-xl">
                             <h4 className="font-bold text-[#8b5cf6] mb-5 uppercase tracking-tighter flex items-center gap-2 text-base md:text-lg italic">
-                                <Icon name="droplets" size={20} className="text-[#8b5cf6]" /> {t.moistureTitle}
+                                <Icon name="fas fa-droplet" size={20} className="text-[#8b5cf6]" /> {t.moistureTitle}
                             </h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <button onClick={() => setSymptom('stringing')} className={`p-5 rounded-xl border text-left transition-all ${symptom === 'stringing' ? 'bg-[#8b5cf6] border-[#8b5cf6] text-white font-bold shadow-[0_0_20px_rgba(139,92,246,0.3)]' : 'bg-slate-900 border-slate-800 hover:border-[#8b5cf6]/40'}`}>
@@ -340,12 +337,12 @@
                                 <div className="mt-5 p-5 bg-[#8b5cf6]/10 rounded-lg border border-[#8b5cf6]/30 text-sm md:text-base leading-relaxed italic text-slate-100 animate-in fade-in">
                                     {symptom === 'stringing' ? (
                                         <div className="flex gap-4 text-left">
-                                            <Icon name="settings-2" className="text-[#8b5cf6] shrink-0 mt-1" size={20} />
+                                            <Icon name="fas fa-sliders" className="text-[#8b5cf6] shrink-0 mt-1" size={20} />
                                             <span><strong>Diagnóstico:</strong> Puede ser retracción o humedad leve. Antes de secar, asegúrese de calibrar su <strong>Pressure Advance</strong>. Si los hilos persisten incluso con PA perfecto y diferentes temperaturas, el filamento ha absorbido humedad y requiere un ciclo de secado recomendado.</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-4 text-left">
-                                            <Icon name="alert-triangle" className="text-red-500 shrink-0 mt-1" size={20} />
+                                            <Icon name="fas fa-triangle-exclamation" className="text-red-500 shrink-0 mt-1" size={20} />
                                             <span><strong>Diagnóstico:</strong> HUMEDAD CRÍTICA. ¡No pierda tiempo con ajustes de Slicer! Lo que escucha es vapor de agua a presión saliendo del nozzle. El filamento requiere un ciclo de secado recomendado (mínimo 6-12h a 55°C) antes de ser usable para impresiones de calidad.</span>
                                         </div>
                                     )}
@@ -380,7 +377,7 @@
                         <header className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4 border-b border-slate-800 pb-8 text-left">
                             <div className="flex items-center gap-5">
                                 <div className="w-14 h-14 bg-[#8b5cf6] rounded-2xl flex items-center justify-center shadow-lg shadow-[#8b5cf6]/30 text-white transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                                    <Icon name="layers" size={32} />
+                                    <Icon name="fas fa-layer-group" size={32} />
                                 </div>
                                 <div>
                                     <h1 className="text-4xl font-black tracking-tighter bg-gradient-to-r from-[#8b5cf6] to-violet-300 bg-clip-text text-transparent uppercase italic">Sky Toolbox</h1>
@@ -406,11 +403,11 @@
                                     </div>
                                     <div className="flex lg:flex-col gap-3 overflow-x-auto no-scrollbar pb-3 lg:pb-0">
                                         {[
-                                            { id: 'flow', label: t.sidebarFlow, icon: "activity" },
-                                            { id: 'pa', label: t.sidebarPA, icon: "settings-2" },
-                                            { id: 'vol', label: t.sidebarVol, icon: "gauge" },
-                                            { id: 'vfa', label: t.sidebarVFA, icon: "zap" },
-                                            { id: 'shrink', label: t.sidebarShrink, icon: "maximize" },
+                                            { id: 'flow', label: t.sidebarFlow, icon: "fas fa-chart-line" },
+                                            { id: 'pa', label: t.sidebarPA, icon: "fas fa-sliders" },
+                                            { id: 'vol', label: t.sidebarVol, icon: "fas fa-gauge-high" },
+                                            { id: 'vfa', label: t.sidebarVFA, icon: "fas fa-bolt" },
+                                            { id: 'shrink', label: t.sidebarShrink, icon: "fas fa-expand" },
                                         ].map((c) => (
                                             <button key={c.id} onClick={() => setActiveCalc(c.id)} className={`flex-shrink-0 flex items-center gap-4 p-4 rounded-xl border transition-all ${activeCalc === c.id ? 'bg-[#8b5cf6]/10 border-[#8b5cf6]/50 text-[#8b5cf6] shadow-inner' : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'}`}>
                                                 <Icon name={c.icon} size={20} /> <span className="font-bold text-sm uppercase tracking-tighter">{c.label}</span>
@@ -423,7 +420,7 @@
                                     <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-6 md:p-10 backdrop-blur-md relative shadow-2xl overflow-visible">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                                             <div className="space-y-8 text-left">
-                                                <h3 className="text-2xl font-bold flex items-center gap-4 uppercase tracking-tighter text-slate-100 italic"><Icon name="cpu" className="text-[#8b5cf6]" size={24} /> {t.inputTitle}</h3>
+                                                <h3 className="text-2xl font-bold flex items-center gap-4 uppercase tracking-tighter text-slate-100 italic"><Icon name="fas fa-microchip" className="text-[#8b5cf6]" size={24} /> {t.inputTitle}</h3>
                                                 <div className="space-y-6">
                                                     {activeCalc === 'flow' && (<><InputGroup label="Flujo Actual" value={flowData.current} onChange={(v) => setFlowData({...flowData, current: v})} help="Slicer config" /><InputGroup label="Modificador del Bloque" value={flowData.modifier} onChange={(v) => setFlowData({...flowData, modifier: v})} help="Bloque impreso" /></>)}
                                                     {activeCalc === 'pa' && (<><InputGroup label="Valor Inicial" value={paData.start} onChange={(v) => setPaData({...paData, start: v})} /><InputGroup label="Paso (Step)" value={paData.step} onChange={(v) => setPaData({...paData, step: v})} /><InputGroup label="Altura Medida" value={paData.height} onChange={(v) => setPaData({...paData, height: v})} /></>)}
@@ -435,17 +432,17 @@
                                             <div className="flex flex-col items-center justify-center text-center p-8 bg-[#8b5cf6]/5 rounded-3xl border-2 border-dashed border-[#8b5cf6]/20 min-h-[320px] overflow-hidden relative shadow-inner">
                                                 <p className="text-[#8b5cf6] text-xs font-black uppercase tracking-widest mb-2 font-mono">{t.resTitle}</p>
                                                 <button onClick={() => goToHelp(activeCalc)} className="text-xs text-slate-500 hover:text-[#8b5cf6] uppercase font-bold tracking-tighter mb-5 flex items-center gap-2 transition-colors underline underline-offset-4 decoration-[#8b5cf6]/30 italic">
-                                                    <Icon name="book-open" size={14} /> {t.guideLink}
+                                                    <Icon name="fas fa-book-open" size={14} /> {t.guideLink}
                                                 </button>
                                                 <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight transition-all tabular-nums tracking-tighter drop-shadow-xl">
                                                     {getCurrentResult()}{activeCalc === 'shrink' && '%'}
                                                 </div>
                                                 <div className="flex gap-3 w-full max-w-[280px] mt-10">
                                                     <button onClick={() => copyToClipboard(getCurrentResult())} className={`flex-1 flex items-center justify-center gap-3 px-5 py-4.5 rounded-2xl font-bold transition-all transform active:scale-95 shadow-xl ${copied ? 'bg-green-500 text-white border-green-500 shadow-green-900/20' : 'bg-[#8b5cf6] hover:bg-violet-400 text-white shadow-[#8b5cf6]/30'}`}>
-                                                        {copied ? <Icon name="check-circle-2" size={22} /> : <Icon name="clipboard" size={22} />} <span className="text-base">{copied ? t.copiedBtn : t.copyBtn}</span>
+                                                        {copied ? <Icon name="fas fa-circle-check" size={22} /> : <Icon name="fas fa-clipboard" size={22} />} <span className="text-base">{copied ? t.copiedBtn : t.copyBtn}</span>
                                                     </button>
                                                     <button onClick={saveToHistory} className={`p-4.5 rounded-2xl transition-all border shadow-lg group ${saved ? 'bg-green-600 border-green-500 text-white shadow-green-900/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border-slate-700'}`}>
-                                                        <Icon name={saved ? "check-circle-2" : "save"} size={22} className="group-active:scale-90 transition-transform" />
+                                                        <Icon name={saved ? "fas fa-circle-check" : "fas fa-floppy-disk"} size={22} className="group-active:scale-90 transition-transform" />
                                                     </button>
                                                 </div>
                                                 <p className="mt-5 text-[10px] text-slate-500 italic uppercase font-black tracking-widest opacity-40">* {material} profile optimized</p>
@@ -456,11 +453,11 @@
                                     <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 animate-in slide-in-from-bottom-2 shadow-inner">
                                         <div className="flex items-center justify-between mb-5 px-1 text-left">
                                             <h4 className="text-sm font-black uppercase text-slate-500 tracking-widest flex items-center gap-2 font-mono italic">
-                                                <Icon name="rotate-ccw" size={16} className="text-[#8b5cf6]" /> {t.recentResults}
+                                                <Icon name="fas fa-clock-rotate-left" size={16} className="text-[#8b5cf6]" /> {t.recentResults}
                                             </h4>
                                             {history.length > 0 && (
                                                 <button onClick={clearHistory} className="text-xs font-black uppercase text-red-500/60 hover:text-red-500 flex items-center gap-2 transition-colors group">
-                                                    <Icon name="trash" size={14} className="group-hover:scale-110 transition-transform" /> {t.clearAll}
+                                                    <Icon name="fas fa-trash-can" size={14} className="group-hover:scale-110 transition-transform" /> {t.clearAll}
                                                 </button>
                                             )}
                                         </div>
@@ -474,7 +471,7 @@
                                                     <div className="flex items-center gap-4">
                                                         <span className="text-white font-mono font-bold text-base tracking-tight">{item.value}</span>
                                                         <button onClick={() => deleteItem(item.id)} className="p-2 rounded-lg text-slate-600 hover:text-red-500 hover:bg-red-500/10 transition-all opacity-0 group-hover:opacity-100">
-                                                            <Icon name="trash" size={14} />
+                                                            <Icon name="fas fa-trash-can" size={14} />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -495,7 +492,7 @@
                                 <div className="bg-gradient-to-r from-violet-900/20 to-slate-900/30 p-10 rounded-3xl border border-[#8b5cf6]/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl relative overflow-visible">
                                     <div className="flex items-start gap-5 text-left">
                                         <div className="p-4 bg-slate-800 rounded-2xl shadow-inner text-[#8b5cf6]">
-                                            <Icon name="book-open" size={28} />
+                                            <Icon name="fas fa-book-open" size={28} />
                                         </div>
                                         <div className="space-y-2 text-left">
                                             <h4 className="text-2xl font-bold text-white tracking-tight italic">{t.wikiTitle}</h4>
@@ -503,7 +500,7 @@
                                         </div>
                                     </div>
                                     <a href="https://github.com/OrcaSlicer/OrcaSlicer/wiki/Calibration" target="_blank" rel="noreferrer" className="flex items-center gap-4 bg-[#8b5cf6] text-white px-10 py-4 rounded-xl font-bold hover:bg-violet-400 transition-all shadow-lg hover:shadow-[#8b5cf6]/30 group text-base">
-                                        {t.wikiBtn} <Icon name="external-link" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                        {t.wikiBtn} <Icon name="fas fa-external-link-alt" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     </a>
                                 </div>
                             </div>
@@ -515,15 +512,15 @@
                                     Sky Toolbox
                                 </div>
                                 <a href="https://instagram.com/sky3darg" target="_blank" rel="noreferrer" className="text-sm uppercase font-black tracking-widest text-[#8b5cf6] hover:text-violet-400 transition-colors flex items-center gap-2">
-                                    <Icon name="instagram" size={16} /> @sky3darg
+                                    <Icon name="fa-brands fa-instagram" size={16} /> @sky3darg
                                 </a>
                                 <p className="text-[10px] uppercase font-black tracking-widest italic text-slate-600 mt-1">Desarrollado por SkyDev</p>
                             </div>
                             <div className="flex flex-col items-center md:items-end gap-4 text-xs font-medium text-slate-600 text-center md:text-right">
                                 <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 text-[10px] sm:text-xs font-black uppercase tracking-widest not-italic mb-1 text-slate-500">
-                                    <a href="https://sky3d.com.ar" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="globe" size={14} /> Web Principal</a>
-                                    <a href="https://bambulab.com" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="external-link" size={14} /> Bambu Lab</a>
-                                    <a href="https://github.com/SoftFever/OrcaSlicer" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="external-link" size={14} /> OrcaSlicer</a>
+                                    <a href="https://sky3d.com.ar" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="fas fa-globe" size={14} /> Web Principal</a>
+                                    <a href="https://bambulab.com" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="fas fa-external-link-alt" size={14} /> Bambu Lab</a>
+                                    <a href="https://github.com/SoftFever/OrcaSlicer" target="_blank" rel="noreferrer" className="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5"><Icon name="fas fa-external-link-alt" size={14} /> OrcaSlicer</a>
                                 </div>
                                 <span>&copy; 2026 Sky 3D - Catamarca, Argentina</span>
                             </div>
@@ -546,7 +543,7 @@
                         </div>
                     </div>
                     <div className="shrink-0 ml-3">
-                        {expanded ? <Icon name="chevron-up" className="text-slate-500" size={24} /> : <Icon name="chevron-down" className="text-slate-500" size={24} />}
+                        {expanded ? <Icon name="fas fa-chevron-up" className="text-slate-500" size={24} /> : <Icon name="fas fa-chevron-down" className="text-slate-500" size={24} />}
                     </div>
                 </button>
                 {expanded && <div className="p-7 pt-0 border-t border-slate-800/50 bg-slate-900/40 animate-in slide-in-from-top-2 overflow-visible shadow-inner text-left">{children}</div>}
