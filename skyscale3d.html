@@ -51,7 +51,6 @@
 </head>
 <body class="p-2 md:p-6 max-w-4xl mx-auto relative">
 
-    <!-- Cabecera -->
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold tracking-tight text-white flex items-center justify-center gap-3">
             <i class="fas fa-ruler-combined text-[#8b5cf6]"></i> Cálculos de Diámetro y Escalado
@@ -60,10 +59,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- COLUMNA IZQUIERDA: Herramientas de Medición -->
         <div class="space-y-6">
             
-            <!-- TARJETA 1: Geometría -->
             <div class="bg-[#1e293b] rounded-xl shadow-xl p-5 border-t-4 border-[#8b5cf6] relative">
                 
                 <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-2">
@@ -76,7 +73,6 @@
                     </button>
                 </div>
 
-                <!-- Selección de modo -->
                 <div class="flex mb-4 bg-slate-900 p-1 rounded-lg">
                     <button onclick="setTool('cinta')" id="tab-cinta" class="flex-1 py-2 text-sm font-semibold rounded shadow bg-slate-700 text-white transition-all">
                         Circunferencia
@@ -86,7 +82,6 @@
                     </button>
                 </div>
 
-                <!-- Input Principal -->
                 <div class="mb-4">
                     <label id="input-label" class="block text-xs font-bold text-slate-500 uppercase mb-1">Medida de la Cinta</label>
                     <div class="flex items-center">
@@ -106,7 +101,6 @@
                     <div class="text-[10px] text-slate-500 pt-4 px-2 italic">mm</div>
                 </div>
 
-                <!-- Resultados -->
                 <div class="grid grid-cols-2 gap-4 mb-5">
                     <div class="bg-[#8b5cf6]/5 border border-[#8b5cf6]/20 p-3 rounded-lg text-center">
                         <div class="text-xs text-[#a78bfa] font-bold uppercase">Diámetro Final</div>
@@ -120,7 +114,6 @@
                     </div>
                 </div>
 
-                <!-- Recomendación Técnica -->
                 <div class="mt-4 pt-4 border-t border-slate-700/50">
                     <div class="text-[10px] font-bold text-slate-500 uppercase mb-2">Ayuda para medición de radios:</div>
                     <a href="https://makerworld.com/es/models/2225287-caliper-radius-gauge-corner-radius-up-to-130-mm#profileId-2467730" target="_blank" rel="noopener noreferrer" class="tool-link-card block p-2 rounded-lg flex items-center justify-between group">
@@ -143,7 +136,6 @@
                 </div>
             </div>
 
-            <!-- TARJETA 2: Escalado -->
             <div class="bg-[#1e293b] rounded-xl shadow-xl p-5 border-t-4 border-emerald-500">
                 <h2 class="text-lg font-bold text-white mb-4 flex items-center">
                     <i class="fas fa-expand-arrows-alt mr-2 text-emerald-500"></i> Cálculo de Escalado
@@ -172,7 +164,6 @@
 
         </div>
 
-        <!-- COLUMNA DERECHA: Calculadora -->
         <div class="h-full">
             <div class="bg-slate-900 rounded-xl shadow-2xl p-5 h-full text-white flex flex-col border border-slate-700">
                 <div>
@@ -186,7 +177,6 @@
                     </div>
                 </div>
 
-                <!-- Memoria -->
                 <div class="flex-1 bg-slate-800/30 rounded-lg p-3 mb-4 overflow-hidden border border-slate-800 flex flex-col relative min-h-[120px]">
                     <div class="flex justify-between items-center mb-2 pb-1 border-b border-slate-700">
                         <span class="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Memoria Temporal</span>
@@ -200,7 +190,6 @@
                     </div>
                 </div>
 
-                <!-- Botones Memoria -->
                 <div class="grid grid-cols-4 gap-2 mb-4">
                     <button onclick="calcMC()" class="calc-btn p-2 rounded bg-slate-800 text-red-500 text-xs font-bold border border-red-900/20">MC</button>
                     <button onclick="calcMR()" class="calc-btn p-2 rounded bg-slate-800 text-[#a78bfa] text-xs font-bold border border-blue-900/20">MR</button>
@@ -208,7 +197,6 @@
                     <button onclick="calcMPlus()" class="calc-btn p-2 rounded bg-slate-800 text-emerald-500 text-xs font-bold border border-emerald-900/20">M+</button>
                 </div>
 
-                <!-- Teclado Principal -->
                 <div class="grid grid-cols-4 gap-3">
                     <button onclick="calcCmd('C')" class="calc-btn p-4 rounded bg-red-900/10 text-red-500 hover:bg-red-900/30 font-bold border border-red-900/10">C</button>
                     <button onclick="calcCmd('(')" class="calc-btn p-4 rounded bg-slate-800 hover:bg-slate-700 font-bold text-slate-500 border border-slate-700">(</button>
@@ -238,7 +226,6 @@
         </div>
     </div>
 
-    <!-- Modales -->
     <div id="modal-save" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-md">
         <div class="bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-sm overflow-hidden modal-enter">
             <div class="bg-[#8b5cf6] p-4 text-white">
@@ -449,7 +436,6 @@
             renderSavedList();
         }
 
-        // --- CALCULADORA ---
         let calcExpression = "";
         let memoryTotal = 0;
         let memoryHistory = [];
