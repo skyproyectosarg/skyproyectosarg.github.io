@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sky Cotizador 3D | Oficial</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --accent: #8b5cf6; 
@@ -177,6 +178,28 @@
         }
         .btn-icon:hover { color: white; border-color: var(--accent); }
         .btn-delete:hover { border-color: var(--danger); color: var(--danger); }
+
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; color: var(--text-dim); order: 6; }
+        @media (min-width: 768px) { .footer { margin-top: 64px; padding-top: 32px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 24px; } }
+        .footer-left { display: flex; flex-direction: column; gap: 6px; text-align: center; }
+        @media (min-width: 768px) { .footer-left { text-align: left; gap: 8px; } }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 900; font-family: monospace; text-transform: uppercase; color: var(--text); font-size: 12px; letter-spacing: -0.5px; }
+        @media (min-width: 768px) { .footer-brand { justify-content: flex-start; font-size: 14px; gap: 10px; } }
+        .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        .footer-social { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--accent); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; margin: 4px 0; }
+        @media (min-width: 768px) { .footer-social { justify-content: flex-start; font-size: 14px; margin: 8px 0; gap: 8px; } }
+        .footer-social:hover { color: var(--accent-hover); }
+        .footer-dev { font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; font-style: italic; color: #52525b; }
+        .footer-right { display: flex; flex-direction: column; gap: 10px; text-align: center; }
+        @media (min-width: 768px) { .footer-right { text-align: right; gap: 16px; } }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-weight: 900; text-transform: uppercase; font-size: 9px; letter-spacing: 1px; }
+        @media (min-width: 768px) { .footer-links { justify-content: flex-end; font-size: 10px; gap: 20px; } }
+        .footer-links a { display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 10px; font-weight: 600; }
+        
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+
         @media (max-width: 768px) {
             .nav-header { order: 1; }
             .tabs-nav { display: flex; order: 2; } 
@@ -189,6 +212,7 @@
             .projects-section { order: 5; }
             .stat-grid { grid-template-columns: repeat(2, 1fr); }
             .price-main { font-size: 42px; }
+            .footer { order: 6; }
         }
         @media (min-width: 769px) { .dashboard-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (max-width: 1100px) and (min-width: 769px) { .dashboard-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -332,6 +356,25 @@
         </div>
         <div class="projects-list" id="projectsList"></div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="footer-brand">
+                <span class="dot"></span> Sky Cotizador 3D
+            </div>
+            <a href="https://instagram.com/sky3darg" target="_blank" rel="noopener noreferrer" class="footer-social">
+                <i class="fa-brands fa-instagram"></i> @sky3darg
+            </a>
+            <p class="footer-dev">Desarrollado por SkyDev</p>
+        </div>
+        
+        <div class="footer-right">
+            <div class="footer-links">
+                <a href="https://sky3d.com.ar" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Web Principal</a>
+            </div>
+            <span class="footer-copy">&copy; 2026 Sky 3D - Catamarca, Argentina</span>
+        </div>
+    </footer>
 </div>
 <script>
     const format = (v) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(v);
