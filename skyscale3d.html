@@ -184,12 +184,12 @@
         <div class="card">
             <h2 class="card-h2"><i class="fas fa-circle-notch" style="color:var(--accent)"></i> Cálculo de Diámetro</h2>
             <div class="tabs">
-                <button id="tab-c" class="tab active" onclick="setMode('cinta')">Circunferencia</button>
-                <button id="tab-v" class="tab" onclick="setMode('calibre')">Puntos en V</button>
+                <button id="tab-c" class="tab active" onclick="setMode('cinta')">Cinta</button>
+                <button id="tab-v" class="tab" onclick="setMode('calibre')">Calibre</button>
             </div>
 
             <div class="input-group">
-                <label id="lbl-input">Medida de la Cinta</label>
+                <label id="lbl-input">Circunferencia</label>
                 <div class="flex-input">
                     <input type="number" id="in-val" placeholder="0" oninput="runCalc()">
                     <select id="in-unit" onchange="runCalc()">
@@ -296,7 +296,7 @@
         mode = m;
         document.getElementById('tab-c').className = m === 'cinta' ? 'tab active' : 'tab';
         document.getElementById('tab-v').className = m === 'calibre' ? 'tab active' : 'tab';
-        document.getElementById('lbl-input').innerText = m === 'cinta' ? 'Medida de la Cinta' : 'Lectura en V (90°)';
+        document.getElementById('lbl-input').innerText = m === 'cinta' ? 'Medida de la Cinta' : 'Lectura Calibre';
         runCalc();
     }
 
