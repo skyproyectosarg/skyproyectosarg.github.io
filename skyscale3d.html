@@ -14,15 +14,14 @@
             --accent: #8b5cf6;
             --accent-hover: #7c3aed;
             --success: #10b981;
+            --warning: #f59e0b;
             --text: #f4f4f5;
             --text-dim: #a1a1aa;
         }
 
-        /* Reset y Base */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
         body { background-color: var(--bg); color: var(--text); padding: 15px; min-height: 100vh; }
 
-        /* Quitar flechas de inputs numéricos */
         input::-webkit-outer-spin-button, 
         input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
@@ -79,7 +78,6 @@
         .res-box { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 16px; border: 1px solid var(--border); text-align: center; }
         .res-val { font-size: 26px; font-weight: 900; color: white; margin-top: 4px; font-family: monospace; }
 
-        /* Animaciones en Botones */
         .btn-action { 
             width: 100%; padding: 16px; border-radius: 14px; border: none; font-weight: 900; 
             text-transform: uppercase; cursor: pointer; display: flex; align-items: center; 
@@ -105,9 +103,35 @@
         .modal-content { background: var(--card); border: 1px solid var(--border); width: 100%; max-width: 400px; border-radius: 24px; overflow: hidden; animation: fadeIn 0.2s ease-out; }
         .modal-h { background: var(--accent); padding: 20px; text-align: center; color: white; font-weight: 900; text-transform: uppercase; font-style: italic; }
 
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; color: var(--text-dim); }
+        @media (min-width: 768px) { .footer { margin-top: 64px; padding-top: 32px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 24px; } }
+        .footer-left { display: flex; flex-direction: column; gap: 6px; text-align: center; }
+        @media (min-width: 768px) { .footer-left { text-align: left; gap: 8px; } }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 900; font-family: monospace; text-transform: uppercase; color: var(--text); font-size: 12px; letter-spacing: -0.5px; }
+        @media (min-width: 768px) { .footer-brand { justify-content: flex-start; font-size: 14px; gap: 10px; } }
+        .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        .footer-social { display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--accent); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s; margin: 4px 0; }
+        @media (min-width: 768px) { .footer-social { justify-content: flex-start; font-size: 14px; margin: 8px 0; gap: 8px; } }
+        .footer-social:hover { color: var(--accent-hover); }
+        .footer-dev { font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 2px; font-style: italic; color: #52525b; }
+        .footer-right { display: flex; flex-direction: column; gap: 10px; text-align: center; }
+        @media (min-width: 768px) { .footer-right { text-align: right; gap: 16px; } }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-weight: 900; text-transform: uppercase; font-size: 9px; letter-spacing: 1px; }
+        @media (min-width: 768px) { .footer-links { justify-content: flex-end; font-size: 10px; gap: 20px; } }
+        .footer-links a { display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 10px; font-weight: 600; }
+        
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
 
-        footer { margin-top: 50px; text-align: center; padding: 30px; border-top: 1px solid var(--border); color: #3f3f46; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        .guide-details { margin-bottom: 24px; cursor: pointer; }
+        .guide-summary { padding: 16px 20px; list-style: none; display: flex; justify-content: space-between; align-items: center; font-weight: 900; text-transform: uppercase; font-style: italic; font-size: 12px; color: var(--accent); }
+        .guide-summary::-webkit-details-marker { display: none; }
+        .guide-content { padding: 0 20px 20px 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+        .guide-step { margin-top: 16px; }
+        .guide-step strong { color: var(--text); display: block; margin-bottom: 4px; text-transform: uppercase; font-size: 11px; }
+        .guide-tip { background: rgba(245, 158, 11, 0.05); border-left: 4px solid var(--warning); padding: 12px 16px; margin: 16px 0; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -118,11 +142,39 @@
             <div class="logo-box"><i class="fas fa-ruler-combined"></i></div>
             <div class="header-text">
                 <h1>SkyScale 3D</h1>
-                <p>Búnker de Precisión SkyDev</p>
+                <p>Herramientas para makers</p>
             </div>
         </div>
         <button class="btn-hist" onclick="toggleHist(true)"><i class="fas fa-clock-rotate-left"></i> Historial</button>
     </header>
+
+    <details class="card guide-details">
+        <summary class="guide-summary">
+            <span><i class="fas fa-info-circle" style="margin-right: 8px;"></i> Guía Técnica de Escalado</span>
+            <i class="fas fa-chevron-down" style="font-size: 0.8em; opacity: 0.5;"></i>
+        </summary>
+        <div class="guide-content">
+            <div class="guide-tip">
+                <strong style="color: var(--warning);">⚠️ Tip Técnico:</strong>
+                Imprimí una "rodaja" de prueba para verificar el calce. Ajustá el eje Z según el largo de tu aluminio.
+            </div>
+            
+            <div class="guide-step">
+                <strong>1. Medición del Inserto</strong>
+                Medí el contorno superior del aluminio con cinta de modista. Anotá los cm exactos.
+            </div>
+
+            <div class="guide-step">
+                <strong>2. Medición del Diseño (STL)</strong>
+                En tu slicer, medí el diámetro interno del hueco donde encastra el aluminio.
+            </div>
+
+            <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; font-style: italic;">
+                Herramienta recomendada para medir radios: 
+                <a href="https://makerworld.com/en/models/2225287-caliper-radius-gauge-corner-radius-up-to-130-mm#profileId-2467730" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 800; text-transform: uppercase;">Accesorio Calibre (MakerWorld)</a>
+            </div>
+        </div>
+    </details>
 
     <div class="main-grid">
         <div class="card">
@@ -183,10 +235,29 @@
             </div>
             
             <p style="font-size:11px; color:var(--text-dim); line-height:1.4; text-align:center; font-style:italic;">
-                Tip: Calibrá primero el <b>Flow Ratio</b> en Toolbox para encajes perfectos[cite: 288, 289].
+                Tip: Calibrá primero el <b>Flow Ratio</b> en Toolbox para encajes perfectos.
             </p>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="footer-brand">
+                <span class="dot"></span> Sky Toolbox
+            </div>
+            <a href="https://instagram.com/sky3darg" target="_blank" rel="noopener noreferrer" class="footer-social">
+                <i class="fa-brands fa-instagram"></i> @sky3darg
+            </a>
+            <p class="footer-dev">Desarrollado por SkyDev</p>
+        </div>
+        
+        <div class="footer-right">
+            <div class="footer-links">
+                <a href="https://sky3d.com.ar" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Web Principal</a>
+            </div>
+            <span class="footer-copy">&copy; 2026 SkyDev - SFVC, Catamarca</span>
+        </div>
+    </footer>
 </div>
 
 <div id="mod-save" class="modal">
@@ -212,8 +283,6 @@
         </div>
     </div>
 </div>
-
-<footer>SkyDev Software © 2026 | Catamarca, Argentina [cite: 361]</footer>
 
 <script>
     let mode = 'cinta';
