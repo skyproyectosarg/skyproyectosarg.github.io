@@ -403,23 +403,32 @@
         const vHH = val('vHH'), tMan = val('tMan'), cMant = val('cMant');
         const hImp = val('hImp'), mImp = val('mImp'), peso = val('peso'), multi = val('multi');
         const mlP = val('mlPerc')/100, mlF = val('mlFijo');
+        
         const tTotal = hImp + (mImp / 60);
-        const costoMat = ((pKg / 1000) * peso * (1 + fail)) + extras;
+        
+        // CORRECCIÓN: Separamos el costo de material de los extras para que no se multipliquen por el margen
+        const costoMat = ((pKg / 1000) * peso * (1 + fail));
         const costoElec = (watts / 1000) * tTotal * ckwh;
         const amortMant = ((vMaq / vUtil) + cMant) * tTotal;
         const laborFijos = ((vHH / 60) * tMan) + ((gFijos / hMes) * tTotal);
-        const costoTotal = costoMat + costoElec + amortMant + laborFijos;
-        const precioFinal = costoTotal * multi;
+        
+        const costoTotalBase = costoMat + costoElec + amortMant + laborFijos;
+        const costoTotalFinal = costoTotalBase + extras;
+        
+        // El multiplicador solo afecta a los costos operativos, los extras se suman neto al final
+        const precioFinal = (costoTotalBase * multi) + extras;
         const precioML = (precioFinal + mlF) / (1 - mlP);
-        document.getElementById('outMat').innerText = format(costoMat);
+
+        document.getElementById('outMat').innerText = format(costoMat + extras);
         document.getElementById('outElec').innerText = format(costoElec);
         document.getElementById('outAmort').innerText = format(amortMant);
         document.getElementById('outLabor').innerText = format(laborFijos);
-        document.getElementById('outCostoTotal').innerText = format(costoTotal);
-        document.getElementById('outProfit').innerText = format(precioFinal - costoTotal);
+        document.getElementById('outCostoTotal').innerText = format(costoTotalFinal);
+        document.getElementById('outProfit').innerText = format(precioFinal - costoTotalFinal);
         document.getElementById('outFinal').innerText = format(precioFinal);
         document.getElementById('outML').innerText = format(precioML);
-        return { costoTotal, precioFinal, peso, tTotal };
+        
+        return { costoTotal: costoTotalFinal, precioFinal, peso, tTotal };
     }
     let projects = JSON.parse(localStorage.getItem('sky_db_vfinal')) || [];
     function saveProject() {
