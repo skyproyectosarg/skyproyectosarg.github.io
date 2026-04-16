@@ -273,15 +273,27 @@
                 <div class="tooltip">
                     <b>Guía de Costos</b>
                     <br><b>Filamento:</b> Precio que pagaste por el rollo de 1KG.
-                    <br><b>kWh ($):</b> Valor de tu factura eléctrica o consultá a una IA el promedio de tu ciudad.
-                    <br><b>Watts:</b> Consumo promedio (150W para PLA). Si imprimís PETG, subilo a 180W por el calor extra.
-                    <br><b>Fallas:</b> Margen de seguridad (10-20%) para cubrir impresiones fallidas o purgas.
-                    <br><b>Extras:</b> Costo fijo unitario de aros, imanes, tornillos o packaging.
+                    <br><b>kWh ($):</b> Valor de tu factura eléctrica.
+                    <br><b>Watts:</b> Consumo promedio según material.
+                    <br><b>Fallas:</b> Margen de seguridad (10-20%).
+                    <br><b>Extras:</b> Costo neto final (no se multiplica).
                 </div>
             </div>
-            <div class="input-group">
-                <label>Filamento ($/KG)</label>
-                <input type="number" id="precioKg" value="23000" oninput="calcular()">
+            <div class="row">
+                <div class="input-group">
+                    <label>Tipo Material</label>
+                    <select id="matType" onchange="updateMaterial()">
+                        <option value="pla">PLA (Estándar)</option>
+                        <option value="petg">PETG (Técnico)</option>
+                        <option value="abs">ABS (Resistente)</option>
+                        <option value="tpu">TPU (Flexible)</option>
+                        <option value="nylon">Nylon / CF</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Filamento ($/KG)</label>
+                    <input type="number" id="precioKg" value="23000" oninput="calcular()">
+                </div>
             </div>
             <div class="row">
                 <div class="input-group"><label>kWh ($)</label><input type="number" id="ckwh" value="130.71" oninput="calcular()"></div>
@@ -321,12 +333,17 @@
                     <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </div>
                 <div class="tooltip">
-                    <b>Tu Tiempo</b>
-                    Hora Técnica: Tu valor conocimiento. Preparación: Minutos de post-procesado.
+                    <b>Tu Tiempo (Costo Neto)</b>
+                    Este valor NO se multiplica por el margen de ganancia. 
+                    <br><br><b>Ejemplos de Preparación:</b>
+                    <br>• <b>Llavero simple:</b> 5-10 min (Quitar soportes + poner argolla).
+                    <br>• <b>Litofanía:</b> 2 min (Limpieza mínima).
+                    <br>• <b>Pieza Mecánica:</b> 15-20 min (Lijado + verificación de calces).
+                    <br>• <b>Post-procesado Premium:</b> 60+ min (Masillado + Pintado).
                 </div>
             </div>
-            <div class="input-group"><label>Valor Hora Técnica</label><input type="number" id="vHH" value="0" oninput="calcular()"></div>
-            <div class="input-group"><label>Preparación (Min)</label><input type="number" id="tMan" value="0" oninput="calcular()"></div>
+            <div class="input-group"><label>Valor Hora Técnica</label><input type="number" id="vHH" value="2500" oninput="calcular()"></div>
+            <div class="input-group"><label>Preparación (Minutos)</label><input type="number" id="tMan" value="0" oninput="calcular()"></div>
             <div class="input-group"><label>Mantenimiento ($/h)</label><input type="number" id="cMant" value="60" oninput="calcular()"></div>
         </div>
     </div>
@@ -348,7 +365,7 @@
                 <div class="stat-box"><span class="stat-label">Insumos+Ext</span><span class="stat-value" id="outMat">$ 0,00</span></div>
                 <div class="stat-box"><span class="stat-label">Energía</span><span class="stat-value" id="outElec">$ 0,00</span></div>
                 <div class="stat-box"><span class="stat-label">Amortización</span><span class="stat-value" id="outAmort">$ 0,00</span></div>
-                <div class="stat-box"><span class="stat-label">Labor/Fijos</span><span class="stat-value" id="outLabor">$ 0,00</span></div>
+                <div class="stat-box"><span class="stat-label">Labor Técnica</span><span class="stat-value" id="outLabor">$ 0,00</span></div>
                 <div class="stat-box" style="border-color: var(--accent);"><span class="stat-label" style="color: var(--accent);">Costo Real</span><span class="stat-value" id="outCostoTotal" style="color: var(--accent);">$ 0,00</span></div>
                 <div class="stat-box" style="border-color: var(--success);"><span class="stat-label" style="color: var(--success);">Ganancia</span><span class="stat-value" id="outProfit" style="color: var(--success);">$ 0,00</span></div>
             </div>
@@ -387,15 +404,36 @@
 </div>
 <script>
     const format = (v) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(v);
+    
+    function updateMaterial() {
+        const mat = document.getElementById('matType').value;
+        const pKg = document.getElementById('precioKg');
+        const watts = document.getElementById('watts');
+        
+        const data = {
+            pla: { price: 23000, watts: 150 },
+            petg: { price: 27500, watts: 180 },
+            abs: { price: 29000, watts: 280 },
+            tpu: { price: 38000, watts: 150 },
+            nylon: { price: 65000, watts: 220 }
+        };
+        
+        pKg.value = data[mat].price;
+        watts.value = data[mat].watts;
+        calcular();
+    }
+
     function escapeHTML(str) {
         const p = document.createElement('p');
         p.textContent = str;
         return p.innerHTML;
     }
+
     function switchTab(index) {
         document.querySelectorAll('.card').forEach((c, i) => c.classList.toggle('active', i === index));
         document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === index));
     }
+
     function calcular() {
         const val = (id) => parseFloat(document.getElementById(id).value) || 0;
         const pKg = val('precioKg'), ckwh = val('ckwh'), watts = val('watts'), fail = val('failRate')/100, extras = val('extras');
@@ -406,30 +444,34 @@
         
         const tTotal = hImp + (mImp / 60);
         
-        // CORRECCIÓN: Separamos el costo de material de los extras para que no se multipliquen por el margen
+        // COSTOS MULTIPLICABLES (Insumos, Energía, Amortización, Gastos Fijos de Local)
         const costoMat = ((pKg / 1000) * peso * (1 + fail));
         const costoElec = (watts / 1000) * tTotal * ckwh;
         const amortMant = ((vMaq / vUtil) + cMant) * tTotal;
-        const laborFijos = ((vHH / 60) * tMan) + ((gFijos / hMes) * tTotal);
+        const fijosProporcionales = (gFijos / hMes) * tTotal;
         
-        const costoTotalBase = costoMat + costoElec + amortMant + laborFijos;
-        const costoTotalFinal = costoTotalBase + extras;
+        const subtotalMultiplicable = costoMat + costoElec + amortMant + fijosProporcionales;
         
-        // El multiplicador solo afecta a los costos operativos, los extras se suman neto al final
-        const precioFinal = (costoTotalBase * multi) + extras;
-        const precioML = (precioFinal + mlF) / (1 - mlP);
+        // COSTOS NETOS (Mano de obra directa y Extras)
+        const costoLaborNeta = (vHH / 60) * tMan;
+        
+        // RESULTADOS
+        const costoRealTotal = subtotalMultiplicable + costoLaborNeta + extras;
+        const precioSugerido = (subtotalMultiplicable * multi) + costoLaborNeta + extras;
+        const precioML = (precioSugerido + mlF) / (1 - mlP);
 
         document.getElementById('outMat').innerText = format(costoMat + extras);
         document.getElementById('outElec').innerText = format(costoElec);
         document.getElementById('outAmort').innerText = format(amortMant);
-        document.getElementById('outLabor').innerText = format(laborFijos);
-        document.getElementById('outCostoTotal').innerText = format(costoTotalFinal);
-        document.getElementById('outProfit').innerText = format(precioFinal - costoTotalFinal);
-        document.getElementById('outFinal').innerText = format(precioFinal);
+        document.getElementById('outLabor').innerText = format(costoLaborNeta + fijosProporcionales);
+        document.getElementById('outCostoTotal').innerText = format(costoRealTotal);
+        document.getElementById('outProfit').innerText = format(precioSugerido - costoRealTotal);
+        document.getElementById('outFinal').innerText = format(precioSugerido);
         document.getElementById('outML').innerText = format(precioML);
         
-        return { costoTotal: costoTotalFinal, precioFinal, peso, tTotal };
+        return { costoTotal: costoRealTotal, precioFinal: precioSugerido, peso, tTotal };
     }
+
     let projects = JSON.parse(localStorage.getItem('sky_db_vfinal')) || [];
     function saveProject() {
         const name = document.getElementById('projectName').value.trim();
@@ -449,6 +491,7 @@
         document.getElementById('projectName').value = "";
         render();
     }
+
     function loadProject(id) {
         const p = projects.find(p => p.id === id.toString());
         if (!p) return;
@@ -461,11 +504,13 @@
         if(window.innerWidth <= 768) switchTab(0);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     function deleteProject(id) {
         projects = projects.filter(p => p.id !== id.toString());
         localStorage.setItem('sky_db_vfinal', JSON.stringify(projects));
         render();
     }
+
     function render() {
         const list = document.getElementById('projectsList');
         if (projects.length === 0) {
@@ -485,6 +530,7 @@
             </div>
         `).join('');
     }
+
     function exportAll() {
         if (projects.length === 0) return;
         let csv = "\ufeffProyecto,Fecha,Peso(g),Tiempo(h),Precio Final\n";
@@ -500,6 +546,7 @@
         a.click();
         document.body.removeChild(a);
     }
+
     document.addEventListener('DOMContentLoaded', () => {
         const triggers = document.querySelectorAll('.info-trigger');
         triggers.forEach(t => {
